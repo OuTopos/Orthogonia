@@ -37,18 +37,18 @@ function screenObjectsHandler.draw()
 		end
 	end
 	--test = 0
-	for zk,zv in next,map.view.drawables,nil do
+	--for zk,zv in next,map.view.drawables,nil do
 		--test = test +1
 		--print("Drawing; "..zk)
-		for yk,yv in pairs(map.view.drawables[zk]) do
-			for xk,xv in pairs(map.view.drawables[zk][yk]) do
+	--	for yk,yv in pairs(map.view.drawables[zk]) do
+	--		for xk,xv in pairs(map.view.drawables[zk][yk]) do
 				--print(zk,yk,xk,map.view.drawables[zk][yk][xk])
 				--{"tilesetImage", map.tiles[z][y][x]}
-				love.graphics.drawq(tilesetImage, tileQuads[map.view.drawables[zk][yk][xk][2]], xk, yk)
+				--love.graphics.drawq(tilesetImage, tileQuads[map.view.drawables[zk][yk][xk][2]], xk, yk)
 				
-			end
-		end
-	end
+	--		end
+	--	end
+	--end
 
 	--print("Drawing END")
 	--print(test)
