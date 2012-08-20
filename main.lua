@@ -1,17 +1,20 @@
+love.graphics.setDefaultImageFilter( "nearest", "nearest" )
+
 require "screen"
 require "camera"
 require "map"
 require "player"
-require "tiles"
+
+-- Particle test
+require "weather"
+
+require "screenObjectsHandler"
 
 -- Libraries
 local easing = require("lib/easing/easing")
 
-
-require "screenObjectsHandler"
-
-
 function love.load()
+	print("☻ Ey yo yo!")
 	love.graphics.setDefaultImageFilter( "nearest", "nearest" )
 	
 	hamster = love.graphics.newImage("sprites/ape.png")
@@ -35,7 +38,7 @@ function love.load()
 	love.graphics.setMode(1366, 768, true, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
 
 
-	imagefont = love.graphics.newImage("sprites/imagefont.png")
+	imagefont = love.graphics.newImage("sprites/imagefont2.png")
 	font = love.graphics.newImageFont(imagefont,
 	" abcdefghijklmnopqrstuvwxyz" ..
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0" ..
@@ -48,8 +51,11 @@ function love.load()
 
 	camera:scale(3)
 
-	map.load()
+	--map.load()
 	--updateTilesetBatch()
+	map = Map.create()
+	map:load()
+	--initiateFarticle()
 end
 
 function love.keypressed(key)   -- we do not need the unicode, so we can leave it out
@@ -60,14 +66,17 @@ end
 
 function love.update(dt)
 	player.move(dt)
-	
-	map.updateTilesetBatch(player.RoundX, player.RoundY)
-	map:updateView()
+	map:update(player.RoundX, player.RoundY)
+	--map.updateTilesetBatch(player.RoundX, player.RoundY)
+	--map:updateView()
+
+	--updateFarticle(dt)
 end
 
 function love.draw()
 	camera:center(player.RoundX, player.RoundY)
 	camera:set()
+
 	--		screenObjects[value.link].x = physicsObjects[id].body:getX()
 	--	screenObjects[value.link].y = physicsObjects[id].body:getY()
 	--	screenObjects[value.link].r = physicsObjects[id].body:getAngle()
@@ -78,6 +87,8 @@ function love.draw()
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.draw(arkanos, 0, 0, 0, 1)
 	love.graphics.draw(farming, -768, 0, 0, 1)
+	--drawtiles()
+	map:draw()
 	screenObjectsHandler.draw()
 --	love.graphics.draw(tilesetBatch, map.view.x*map.tileSize-map.tileSize/2, map.view.y*map.tileSize-map.tileSize/2)
 	--love.graphics.rectangle("fill", player.RoundX, player.RoundY, 32, 16)
@@ -97,8 +108,8 @@ function love.draw()
 	love.graphics.setColor(255, 255, 255, 255)
 
 	--love.graphics.setColor(50, 50, 150, 255)
-
-
+	--drawFarticle()
+	map:draw()
 	-- Text Test
 	love.graphics.setColor(255, 153, 153, 255)
 	love.graphics.print('Hello World!', 204, 288)
@@ -109,8 +120,8 @@ function love.draw()
 	love.graphics.setColor(255, 255, 255, 153)
 	love.graphics.print("FPS: "..love.timer.getFPS(), camera.x + 2, camera.y + 0)
 	love.graphics.print("Cord: "..player.RoundX..":"..player.RoundY, camera.x + 2, camera.y + 17)
-	love.graphics.print("Tile: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 34)
-	love.graphics.print("Stuff: "..easing.linear(9, 0, 100, 10), camera.x + 2, camera.y + 51)
+	love.graphics.print("Tile: "..math.floor( player.RoundX / map.tileSize + 0.5 )..":"..math.floor( player.RoundY / map.tileSize + 0.5 ), camera.x + 2, camera.y + 34)
+	love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 51)
 
 	love.graphics.setColor(255, 255, 255, 255)
 

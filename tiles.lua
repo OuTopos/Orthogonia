@@ -10,10 +10,10 @@ map.view.y = 0
 map.view.z = 0
 map.view.size = {}
 map.view.size.x = 11
-map.view.size.y = 6
+map.view.size.y = 7
 map.view.size.z = 2
 map.view.width = 11
-map.view.height = 6
+map.view.height = 7
 map.view.tiles = {}
 
 function map:load()
@@ -97,7 +97,7 @@ function map:updateView()
 			map.view.drawables[z][y*map.tileSize-map.tileSize/2] = {}
 			for x=map.view.x, map.view.x+map.view.size.x-1 do
 				map.view.drawables[z][y*map.tileSize-map.tileSize/2][x*map.tileSize-map.tileSize/2] = {"tilesetImage", map.tiles[z][y][x]}
-				--love.graphics.drawq(tilesetImage, tileQuads[map.tiles[x+map.view.x][y+map.view.y][z]], (x+map.view.x)*map.tileSize-map.tileSize/2, (y+map.view.y)*map.tileSize-map.tileSize/2)
+				love.graphics.drawq(tilesetImage, tileQuads[map.tiles[z][y+map.view.y][x+map.view.x]], (x+map.view.x)*map.tileSize-map.tileSize/2, (y+map.view.y)*map.tileSize-map.tileSize/2)
 			end
 		end
 	end
