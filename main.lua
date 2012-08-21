@@ -2,13 +2,15 @@ love.graphics.setDefaultImageFilter( "nearest", "nearest" )
 
 require "screen"
 require "camera"
+require "hud"
+require "sprites"
 require "map"
 require "player"
 
 -- Particle test
 require "weather"
 
-require "screenObjectsHandler"
+--require "screenObjectsHandler"
 
 -- Libraries
 local easing = require("lib/easing/easing")
@@ -19,23 +21,12 @@ function love.load()
 	
 	hamster = love.graphics.newImage("sprites/ape.png")
 	arkanos = love.graphics.newImage("sprites/Arkanos.png")
-	farming = love.graphics.newImage("sprites/farming.png")
+	--farming = love.graphics.newImage("sprites/farming.png")
 	playerSprite = love.graphics.newImage("sprites/player.png")
 
 	grid = love.graphics.newImage("sprites/grid.png")
 
-	screenObjectsHandler.create("apeball", "sprite", {"hamster", 100, 100, math.rad(90)})
-	
-	--screenObjectsHandler.create("ball2", "sprite", {"hamster", 120, 20, math.rad(90)})
-
-	
-	--screenObjectsHandler.create("test1", "sprite", {"ape", 400, 300, 0, 1, 1, 40, 40})
-	--screenObjectsHandler.create("test2", "sprite", {"ape", 440, 300, 0, 1, 1, 40, 40})
-	--screenObjectsHandler.create("test3", "sprite", {"ape", 480, 300, 0, 1, 1, 40, 40})
-
-		--initial graphics setup
-	--love.graphics.setBackgroundColor(104, 136, 248) --set the background color to a nice blue
-	love.graphics.setMode(1366, 768, true, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
+	love.graphics.setMode(screen.width, screen.height, false, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
 
 
 	imagefont = love.graphics.newImage("sprites/imagefont2.png")
@@ -51,24 +42,27 @@ function love.load()
 
 	camera:scale(3)
 
-	--map.load()
-	--updateTilesetBatch()
 	map = Map.create()
 	map:load()
 	--initiateFarticle()
 end
 
-function love.keypressed(key)   -- we do not need the unicode, so we can leave it out
+function love.keypressed(key)
 	if key == "escape" then
-		love.event.push("quit")   -- actually causes the app to quit
+		love.event.push("quit")
+	end
+	if key == "h" then
+		if hud.enabled then
+			hud.enabled = false
+		else
+			hud.enabled = true
+		end
 	end
 end
 
 function love.update(dt)
 	player.move(dt)
 	map:update(player.RoundX, player.RoundY)
-	--map.updateTilesetBatch(player.RoundX, player.RoundY)
-	--map:updateView()
 
 	--updateFarticle(dt)
 end
@@ -77,70 +71,11 @@ function love.draw()
 	camera:center(player.RoundX, player.RoundY)
 	camera:set()
 
-	--		screenObjects[value.link].x = physicsObjects[id].body:getX()
-	--	screenObjects[value.link].y = physicsObjects[id].body:getY()
-	--	screenObjects[value.link].r = physicsObjects[id].body:getAngle()
-	--love.graphics.rotate(physicsObjects.papeball.body:getAngle())
-	--love.graphics.translate(-(physicsObjects.papeball.body:getX()+1366/2*2), -(physicsObjects.papeball.body:getY()+768/2*2))
-	--love.graphics.scale(2, 2)
-	--love.graphics.setColor(50, 50, 150, 255)
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.draw(arkanos, 0, 0, 0, 1)
-	love.graphics.draw(farming, -768, 0, 0, 1)
-	--drawtiles()
-	map:draw()
-	screenObjectsHandler.draw()
---	love.graphics.draw(tilesetBatch, map.view.x*map.tileSize-map.tileSize/2, map.view.y*map.tileSize-map.tileSize/2)
-	--love.graphics.rectangle("fill", player.RoundX, player.RoundY, 32, 16)
-	love.graphics.setColor(0, 255, 255, 102)
-	love.graphics.rectangle("fill", player.RoundX-12, player.RoundY-8, 24, 16)
-	love.graphics.setColor(255, 0, 0, 102)
-	love.graphics.rectangle("fill", player.RoundX-16, player.RoundY-4, 32, 8)
-	love.graphics.setColor(255, 255, 255, 255)
 
-	love.graphics.draw(playerSprite, player.RoundX-32, player.RoundY-60, 0, 1)
+	sprites.draw()
+	hud.draw()
 
-
-	love.graphics.setColor(0, 0, 255, 102)
-	love.graphics.circle("fill", player.RoundX, player.RoundY, 8, 40)
-	love.graphics.setColor(255, 0, 0, 102)
-	love.graphics.circle("fill", player.RoundX, player.RoundY, 1, 40)
-	love.graphics.setColor(255, 255, 255, 255)
-
-	--love.graphics.setColor(50, 50, 150, 255)
-	--drawFarticle()
-	map:draw()
-	-- Text Test
-	love.graphics.setColor(255, 153, 153, 255)
-	love.graphics.print('Hello World!', 204, 288)
-
-	love.graphics.print(love.graphics.getMode(), 400, 420)
-	
-	-- Debug Text
-	love.graphics.setColor(255, 255, 255, 153)
-	love.graphics.print("FPS: "..love.timer.getFPS(), camera.x + 2, camera.y + 0)
-	love.graphics.print("Cord: "..player.RoundX..":"..player.RoundY, camera.x + 2, camera.y + 17)
-	love.graphics.print("Tile: "..math.floor( player.RoundX / map.tileSize + 0.5 )..":"..math.floor( player.RoundY / map.tileSize + 0.5 ), camera.x + 2, camera.y + 34)
-	love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 51)
-
-	love.graphics.setColor(255, 255, 255, 255)
-
-	for x=0, 100-1 do
-		y = easing.inSine(x, 0, 100, 100)
-		love.graphics.circle("fill", camera.x + 2 + x, camera.y + 200 - y, 1)
-	end
-
-	xx = 50 
-	yy = easing.inSine(xx, 0, 100, 100)
-	love.graphics.setColor(255, 0, 0, 255)
-	love.graphics.circle("fill", camera.x + 2 + xx, camera.y + 200 - yy, 1)
-
-	love.graphics.setColor(255, 255, 255, 153)
-
-
-	love.graphics.print(player.state, camera.x + 2, camera.y + camera.screenHeight / camera.scaleY - 51)
-	love.graphics.print("X: "..player.speed.x, camera.x + 2, camera.y + camera.screenHeight / camera.scaleY - 34)
-	love.graphics.print("Y: "..player.speed.y, camera.x + 2, camera.y + camera.screenHeight / camera.scaleY - 17)
-	
 	camera:unset()
 end

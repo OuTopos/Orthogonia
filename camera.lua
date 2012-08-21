@@ -5,8 +5,8 @@ camera.scaleX = 1
 camera.scaleY = 1
 camera.rotation = 0
 
-camera.screenWidth = 1366 -- use love.graphics.getMode() later
-camera.screenHeight = 768 -- use love.graphics.getMode() later
+camera.screenWidth = screen.width -- use love.graphics.getMode() later
+camera.screenHeight = screen.height -- use love.graphics.getMode() later
 
 
 camera.position = {}
