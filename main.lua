@@ -1,4 +1,4 @@
-love.graphics.setDefaultImageFilter( "nearest", "nearest" )
+SPRITES_IN_BUFFER = 0 -- Number of sprites currently in the buffer
 
 require "screen"
 require "camera"
@@ -8,28 +8,16 @@ require "map"
 require "player"
 
 -- Particle test
-require "weather"
-
---require "screenObjectsHandler"
+--require "weather"
 
 -- Libraries
 local easing = require("lib/easing/easing")
 
 function love.load()
-	print("☻ Ey yo yo!")
 	love.graphics.setDefaultImageFilter( "nearest", "nearest" )
-	
-	hamster = love.graphics.newImage("sprites/ape.png")
-	arkanos = love.graphics.newImage("sprites/Arkanos.png")
-	--farming = love.graphics.newImage("sprites/farming.png")
-	playerSprite = love.graphics.newImage("sprites/player.png")
-
-	grid = love.graphics.newImage("sprites/grid.png")
-
 	love.graphics.setMode(screen.width, screen.height, false, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
 
-
-	imagefont = love.graphics.newImage("sprites/imagefont2.png")
+	imagefont = love.graphics.newImage("images/imagefont2.png")
 	font = love.graphics.newImageFont(imagefont,
 	" abcdefghijklmnopqrstuvwxyz" ..
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0" ..
@@ -41,10 +29,9 @@ function love.load()
 
 
 	camera:scale(3)
-
+	player.load()
 	map = Map.create()
 	map:load()
-	--initiateFarticle()
 end
 
 function love.keypressed(key)
@@ -58,23 +45,29 @@ function love.keypressed(key)
 			hud.enabled = true
 		end
 	end
+	if key == "s" then
+		if sprites.enabled then
+			sprites.enabled = false
+		else
+			sprites.enabled = true
+		end
+	end
 end
 
 function love.update(dt)
 	player.move(dt)
 	map:update(player.RoundX, player.RoundY)
 
-	--updateFarticle(dt)
+	camera:center(player.RoundX, player.RoundY)
 end
 
 function love.draw()
-	camera:center(player.RoundX, player.RoundY)
 	camera:set()
 
-	love.graphics.setColor(255, 255, 255, 255)
-	love.graphics.draw(arkanos, 0, 0, 0, 1)
-
+	-- Draw the sprite buffer
 	sprites.draw()
+
+	-- Draw the HUD
 	hud.draw()
 
 	camera:unset()

@@ -9,6 +9,10 @@ player.speed.acceleration = 0.75
 player.speed.slowdown = 0.90
 player.state = "start"
 
+function player.load()
+	sprites.addSheet("player", 64, 64)
+end
+
 function player.move(derp)
 	if love.keyboard.isDown("right") then
 		player.speed.x = player.speed.max
@@ -54,4 +58,12 @@ function player.move(derp)
 
 	player.RoundX = math.floor( player.x + 0.5 )
 	player.RoundY = math.floor( player.y + 0.5 )
+
+	local tile = {}
+	tile.name= "Player"
+	tile.x = player.RoundX
+	tile.y = player.RoundY
+	tile.z = 1 * map.tileSize --+ 32 --Since it 64 pixels high instead 32.
+	tile.type = 13
+	sprites.addToBuffer("player", 1, tile.x, tile.y, tile.z, 32, 48, 1, 1, 0)
 end
