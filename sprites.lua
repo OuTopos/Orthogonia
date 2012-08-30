@@ -37,6 +37,8 @@ function sprites.addToBuffer(sheet, quad, x, y, z, ox, oy, sx, sy, r)
 end
 
 function sprites.draw()
+	SPRITES_IN_BUFFER = 0
+
 	if sprites.enabled then
 		SPRITES_IN_BUFFER = #sprites.buffer
 		table.sort( sprites.buffer, sprites.sort )
@@ -48,7 +50,7 @@ function sprites.draw()
 			love.graphics.drawq(sheet.image, sheet.quads[sprites.buffer[index].quad], sprites.buffer[index].x, sprites.buffer[index].y, sprites.buffer[index].r, sprites.buffer[index].sx, sprites.buffer[index].sy, sprites.buffer[index].ox, sprites.buffer[index].oy)
 		end
 	end
-
+	
 	sprites.buffer = {}
 end
 

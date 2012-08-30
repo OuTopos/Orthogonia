@@ -11,11 +11,11 @@ function Map.create()
 	
 	-- All values below are in tiles not pixels
 
-	self.size = { x = 100, y = 100, z = 3}
+	self.size = { x = 100, y = 100, z = 2}
 	self.tiles = {}
 
 	self.view = { x = 0, y = 0, z = 0}
-	self.view.size = { x = 13, y = 7, z = 3}
+	self.view.size = { x = 13, y = 7, z = 2}
 
 	return self
 end
@@ -42,7 +42,16 @@ function Map:load()
 						self.tiles[x][y][z] = 2
 					end
 				elseif z == 1 then
-					self.tiles[x][y][z] = math.random(4,7)
+					random = math.random(1,4)
+					if random == 1 then
+						self.tiles[x][y][z] = 4
+					elseif random == 2 then
+						self.tiles[x][y][z] = 5
+					elseif random == 3 then
+						self.tiles[x][y][z] = 13
+					elseif random == 4 then
+						self.tiles[x][y][z] = nil
+					end
 				elseif z == 2 then
 					self.tiles[x][y][z] = 4
 				end
