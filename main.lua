@@ -15,7 +15,7 @@ local easing = require("lib/easing/easing")
 
 function love.load()
 	love.graphics.setDefaultImageFilter( "nearest", "nearest" )
-	love.graphics.setMode(screen.width, screen.height, false, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
+	--love.graphics.setMode(screen.width, screen.height, false, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
 
 	imagefont = love.graphics.newImage("images/imagefont2.png")
 	font = love.graphics.newImageFont(imagefont,
