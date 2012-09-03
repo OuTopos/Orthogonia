@@ -4,21 +4,23 @@ sprites.sheets = {}
 sprites.buffer = {}
 
 function sprites.addSheet(imagePath, gx, gy)
-	local image = love.graphics.newImage( "images/"..imagePath..".png" )
-	local width = image:getWidth()
-	local height = image:getHeight()
-	local quads = {}
-	local i = 0
-	for y=0, math.floor(height/gx)-1 do
-		for x=0, math.floor(width/gy)-1 do
-			i = i + 1
-			quads[i] = love.graphics.newQuad(x*gx, y*gy, gx, gy, width, height)
+	if not sprites.sheets[imagePath] then
+		local image = love.graphics.newImage( "images/"..imagePath..".png" )
+		local width = image:getWidth()
+		local height = image:getHeight()
+		local quads = {}
+		local i = 0
+		for y=0, math.floor(height/gx)-1 do
+			for x=0, math.floor(width/gy)-1 do
+				i = i + 1
+				quads[i] = love.graphics.newQuad(x*gx, y*gy, gx, gy, width, height)
+			end
 		end
-	end
 
-	sprites.sheets[imagePath] = {}
-	sprites.sheets[imagePath].image = image
-	sprites.sheets[imagePath].quads = quads
+		sprites.sheets[imagePath] = {}
+		sprites.sheets[imagePath].image = image
+		sprites.sheets[imagePath].quads = quads
+	end
 end
 
 function sprites.addToBuffer(sheet, quad, x, y, z, ox, oy, sx, sy, r)
@@ -45,9 +47,9 @@ function sprites.draw()
 
 		love.graphics.setColor(255, 255, 255, 255)
 
-		for index = 1, SPRITES_IN_BUFFER do
-			local sheet = sprites.sheets[sprites.buffer[index].sheet]
-			love.graphics.drawq(sheet.image, sheet.quads[sprites.buffer[index].quad], sprites.buffer[index].x, sprites.buffer[index].y, sprites.buffer[index].r, sprites.buffer[index].sx, sprites.buffer[index].sy, sprites.buffer[index].ox, sprites.buffer[index].oy)
+		for i = 1, SPRITES_IN_BUFFER do
+			local sheet = sprites.sheets[sprites.buffer[i].sheet]
+			love.graphics.drawq(sheet.image, sheet.quads[sprites.buffer[i].quad], sprites.buffer[i].x, sprites.buffer[i].y, sprites.buffer[i].r, sprites.buffer[i].sx, sprites.buffer[i].sy, sprites.buffer[i].ox, sprites.buffer[i].oy)
 		end
 	end
 	

@@ -5,9 +5,11 @@ camera.scaleX = 1
 camera.scaleY = 1
 camera.rotation = 0
 
-camera.screenWidth = screen.width -- use love.graphics.getMode() later
-camera.screenHeight = screen.height -- use love.graphics.getMode() later
+--camera.screenWidth = screen.width -- use love.graphics.getMode() later
+--camera.screenHeight = screen.height -- use love.graphics.getMode() later
 
+--camera.width = screen.width
+--camera.height = screen.height
 
 camera.position = {}
 camera.position.x = camera.x
@@ -54,6 +56,6 @@ end
 
 -- Mitt eget
 function camera:center(dx, dy)
-	self.x = dx - camera.screenWidth / 2 / self.scaleX 
-	self.y = dy - camera.screenHeight / 2 / self.scaleY 
+	self.x = dx - screen.width / 2
+	self.y = dy - screen.height / 2
 end

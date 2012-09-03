@@ -1,3 +1,14 @@
 screen = {}
-screen.width = 1024 -- use love.graphics.getMode() later
-screen.height = 512 -- use love.graphics.getMode() later
+screen.width = 340 -- use love.graphics.getMode() later
+screen.height = 200 -- use love.graphics.getMode() later
+screen.scale = 3
+
+function screen.scaleToggle()
+	screen.scale = screen.scale + 1
+	if screen.scale > 4 then
+		screen.scale = 1
+	end
+
+	love.graphics.setMode(screen.width*screen.scale, screen.height*screen.scale)
+	camera:setScale(screen.scale, screen.scale)
+end

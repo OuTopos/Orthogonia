@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="magecity" tilewidth="32" tileheight="32">
+  <image source="../../images/magecity.png" width="256" height="1450"/>
+ </tileset>
+ <layer name="0" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2LtOwzAABVCnKzDxWHhsfAuCghCUBfhtRkZGqPgEXDVR3dLEdgsSQudIN40SNYNvnFhpQghNJpNmntz5oVAm18VPhHJD4zjKnC+ZV/qok+ujy2fMe5u++14f2yvtY103nYum/1reHXVyfUxj3tp8hOVeOrftmKfzp/vVR53c3HhdOZ72ctPM0+2PkuPj9pw+6uTmxmx/J252Y/ZizmNewqKrWTezsZ+G753NjumjTsnc2I+bg5jDmKNmMebp+A+tsSjX10V6vx/HzUnMacxZ28d5U7bW1UedoedUl8uYq4GMQ39H+qizro/Vd/hdzP1AJmuu03Whjzrp+KXr2fT+vw6b9WF+1Ot7nz8leQib96GOOkPjuO3zSh/1Svp4DMvzZTXPmf9TrqSPbUO53+zB992/xdoKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP/iC2vRPGE=
+  </data>
+ </layer>
+ <layer name="1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt101Og0AUAOBptNGk/nSn0ehePYY9kZ5AD6A7vapLhwjxSRhoBTb6fckLzFAS8h7Dm6aU0mEab79wznh7A3Orwn3qMI2+PB4X5rtq1jhYjHgYfii9+0PXGid1Ldb5eKous1unrzXTrKmLHJf1eZP/s/p4rh6/Ft/9+P2qcn/V8fuPHDc5buvxXY77nP/N4vu4UY/ZxHodhfOuWjGNpxzPHfOxd/f1fvuraZTyONS/S/f17b0YZ7VlVNp12GY/xm6qnC7D+CXHaxg31+JaUYfxSt+YKrfXYfyW4z2MH2d7Iqagd/AX9e2x4veq3T8eZnsiurT7ebt/LBNzav/322W/CwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA//MJjmwMfA==
+  </data>
+ </layer>
+ <layer name="2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEKgkAYhuHpCkburWPUiewEtTc9dv9i3KUhhbOY54EXBt18IIwpAdShiY6lR1TmtPC8i875fIluh5SuufnMvpa+Fb97RM/SIwD+YIhe0RhNhbfUrF15d99tBcB383316f/RF1kEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA27wBDt4IDA==
+  </data>
+ </layer>
+ <layer name="3" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1TEKhFAQRMG5q+dY3WutRmrkeikn+KGCgTAgVfDyzjqCt/hlY2sq3kLEnC2ttXgLEVv2b+3FWwCAez5Znw3Zt3YKF7rqAQAn/AcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwhAPWnA1w
+  </data>
+ </layer>
+ <layer name="4" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1bkNADAIBEGa9lOSyzRdINCMtPllF8Ekr3oAAEBjK9vZyW7xFgD68B8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA83zq7QRd
+  </data>
+ </layer>
+ <layer name="5" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztyyEBAAAMAjD6p3jUh8AgNr+kc+UHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAlDyH+AKE=
+  </data>
+ </layer>
+</map>
