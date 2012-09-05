@@ -12,6 +12,7 @@ require "gui"
 require "hud"
 require "sprites"
 require "map"
+require "env"
 require "players"
 require "client"
 
@@ -105,6 +106,8 @@ function love.update(dt)
 
 	-- Update the map according to the active players position
 	map:update(players.list[ACTIVE_PLAYER].xr, players.list[ACTIVE_PLAYER].yr)
+
+	env.update(dt)
 end
 
 function love.draw()
@@ -113,13 +116,8 @@ function love.draw()
 	-- Draw the sprite buffer
 	sprites.draw()
 
-	-- Test post effects.
-	love.graphics.setColor(0, 0, 0, 0)
-	love.graphics.setColorMode("modulate")
-	love.graphics.setBlendMode("additive")
-	love.graphics.rectangle("fill", camera.x, camera.y, screen.width, screen.height)
-
-	love.graphics.setBlendMode("alpha")
+	-- Draw env stuff
+	env.draw()
 
 	-- Draw the GUI
 	gui.draw()
