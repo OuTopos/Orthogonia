@@ -1,16 +1,12 @@
-SPRITES_IN_BUFFER = 0 -- Number of sprites currently in the buffer
 TIMESCALE = 1
 ACTIVE_PLAYER = 1
 
 
-
-
-
 require "screen"
+require "buffer"
 require "camera"
 require "gui"
 require "hud"
-require "sprites"
 require "map"
 require "env"
 require "players"
@@ -65,11 +61,11 @@ function love.keypressed(key)
 			hud.enabled = true
 		end
 	end
-	if key == "s" then
-		if sprites.enabled then
-			sprites.enabled = false
+	if key == "b" then
+		if buffer.enabled then
+			buffer.enabled = false
 		else
-			sprites.enabled = true
+			buffer.enabled = true
 		end
 	end
 	if key == "m" then
@@ -114,7 +110,7 @@ function love.draw()
 	camera:set()
 
 	-- Draw the sprite buffer
-	sprites.draw()
+	buffer:draw()
 
 	-- Draw env stuff
 	env.draw()

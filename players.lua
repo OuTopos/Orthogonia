@@ -20,7 +20,7 @@ function PlayerObject:create(skin)
 	self.frame = 1
 	self.skin = skin
 
-	sprites.addSheet(skin, 64, 64)
+	buffer:addSheet(skin, 64, 64)
 
 	return self
 end
@@ -36,7 +36,7 @@ function PlayerObject:input(dt)
 		self.direction = "west"
 	elseif self.speed.x > 0.1 or self.speed.x < -0.1 then
 		self.speed.x = self.speed.x * self.speed.slowdown
-		self.state = "sliing"
+		self.state = "sliding"
 	elseif not (self.speed.x == 0) then
 		self.speed.x = 0
 		self.state = "stopped"
@@ -61,13 +61,6 @@ function PlayerObject:input(dt)
 end
 
 function PlayerObject:move(dt)
-	if self.x > 1024 then
-		self.speed.x = -100
-	end
-	if self.y < -128 then
-		self.speed.y = - self.speed.y * 2
-	end
-	
 	self.x = self.x + self.speed.x * dt
 	self.y = self.y + self.speed.y * dt
 	self.xr = math.floor( self.x + 0.5 )
@@ -89,13 +82,13 @@ function PlayerObject:animate(dt)
 	end
 
 	if self.direction == "north" then
-		sprites.addToBuffer(self.skin, 2 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
+		buffer:add(self.skin, 2 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
 	elseif self.direction == "west" then
-		sprites.addToBuffer(self.skin, 11 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
+		buffer:add(self.skin, 11 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
 	elseif self.direction == "south" then
-		sprites.addToBuffer(self.skin, 20 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
+		buffer:add(self.skin, 20 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
 	elseif self.direction == "east" then
-		sprites.addToBuffer(self.skin, 29 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
+		buffer:add(self.skin, 29 + self.frame, self.xr, self.yr, self.zr, 32, 48, 1, 1, 0)
 	end
 
 end

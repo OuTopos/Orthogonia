@@ -32,7 +32,7 @@ function hud.draw()
 		love.graphics.print("Cord: "..players.list[ACTIVE_PLAYER].xr..":"..players.list[ACTIVE_PLAYER].yr, camera.x + 2, camera.y + 12)
 		love.graphics.print("Tile: "..math.floor( players.list[ACTIVE_PLAYER].xr / map.tileSize + 0.5 )..":"..math.floor( players.list[ACTIVE_PLAYER].yr / map.tileSize + 0.5 ), camera.x + 2, camera.y + 22)
 		love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 32)
-		love.graphics.print("Sprites: "..SPRITES_IN_BUFFER, camera.x + 2, camera.y + 42)
+		love.graphics.print("Buffer: "..buffer.length, camera.x + 2, camera.y + 42)
 
 		love.graphics.print(players.list[ACTIVE_PLAYER].state, camera.x + 2, camera.y + 52)
 		love.graphics.print("X: "..players.list[ACTIVE_PLAYER].speed.x, camera.x + 2, camera.y + 62)

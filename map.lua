@@ -27,7 +27,7 @@ function Map:load()
 	self.size = { x = 100, y = 100, z = #testmap.layers}
 	self.view.size.z = self.size.z
 
-	sprites.addSheet("magecity", self.tileSize, self.tileSize)
+	buffer:addSheet("magecity", self.tileSize, self.tileSize)
 end
 
 function Map:unload()
@@ -41,16 +41,26 @@ function Map:update(x, y)
 
 	-- Add tiles within the view to the sprite buffer
 	for x=self.view.x, self.view.x+self.view.size.x-1 do
-		for y=self.view.y, self.view.y+self.view.size.y-1 do
-			for z=self.view.z, self.view.z+self.view.size.z-1 do
+		if x > -1 and x < self.size.x then
+			
+			for y=self.view.y, self.view.y+self.view.size.y-1 do
+				if y > -1 and y < self.size.y then
 
-				if testmap.layers[z+1].data[y*self.size.x+x+1] then
-					if testmap.layers[z+1].data[y*self.size.x+x+1] > 0 then
-						sprites.addToBuffer("magecity", testmap.layers[z+1].data[y*self.size.x+x+1], x*self.tileSize, y*self.tileSize, z*self.tileSize, self.tileSize/2, self.tileSize/2, 1, 1, 0)
+					for z=self.view.z, self.view.z+self.view.size.z-1 do
+						if testmap.layers[z+1].type == "tilelayer" then
+							
+							if testmap.layers[z+1].data[y*self.size.x+x+1] then
+								if testmap.layers[z+1].data[y*self.size.x+x+1] > 0 then
+									buffer:add("magecity", testmap.layers[z+1].data[y*self.size.x+x+1], x*self.tileSize, y*self.tileSize, z*self.tileSize, self.tileSize/2, self.tileSize/2, 1, 1, 0)
+								end
+							end
+
+						end
 					end
-				end
 
+				end
 			end
+
 		end
 	end
 end
