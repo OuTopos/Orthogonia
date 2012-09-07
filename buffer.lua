@@ -10,13 +10,12 @@ function buffer:addSheet(imagePath, gx, gy)
 		local height = image:getHeight()
 		local quads = {}
 		local i = 0
-		for y=0, math.floor(height/gx)-1 do
-			for x=0, math.floor(width/gy)-1 do
+		for y=0, math.floor(height/gy)-1 do
+			for x=0, math.floor(width/gx)-1 do
 				i = i + 1
 				quads[i] = love.graphics.newQuad(x*gx, y*gy, gx, gy, width, height)
 			end
 		end
-
 		self.sheets[imagePath] = {}
 		self.sheets[imagePath].image = image
 		self.sheets[imagePath].quads = quads

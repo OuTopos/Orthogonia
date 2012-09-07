@@ -9,6 +9,6 @@ function screen.scaleToggle()
 		screen.scale = 1
 	end
 
-	love.graphics.setMode(screen.width*screen.scale, screen.height*screen.scale)
+	love.graphics.setMode(screen.width*screen.scale, screen.height*screen.scale, false, true)
 	camera:setScale(screen.scale, screen.scale)
 end

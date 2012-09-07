@@ -10,6 +10,7 @@ require "hud"
 require "map"
 require "env"
 require "players"
+require "entities"
 require "client"
 
 -- Particle test
@@ -48,6 +49,26 @@ function love.load()
 
 	map = Map.create()
 	map:load()
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("eyeball")
+	entities.new("snake")
 end
 
 function love.keypressed(key)
@@ -72,7 +93,9 @@ function love.keypressed(key)
 		map:unload()
 	end
 	if key == "n" then
-		map:load()
+		poop = 2
+		table.insert(entities.remove, poop)
+		entities.refresh = true
 	end
 
 	if key == "1" then
@@ -96,6 +119,7 @@ function love.update(dt)
 	dt = dt * TIMESCALE
 
 	players.update(dt)
+	entities.update(dt)
 
 	-- Update the camera according to the active players position
 	camera:center(players.list[ACTIVE_PLAYER].xr, players.list[ACTIVE_PLAYER].yr)
