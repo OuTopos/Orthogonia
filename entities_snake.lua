@@ -1,6 +1,6 @@
-snake = {}
+entities_snake = {}
 
-function snake.new()
+function entities_snake.new(view, control)
 	print("Hello! I am a snake!")
 	local self = {}
 	local remove = false
@@ -9,7 +9,7 @@ function snake.new()
 
 	local x, y, z = math.random(0,400), math.random(0,400), 32
 
-	function self.update(dt)
+	function self.update(dt, i)
 		x = x + math.random(-1,1)
 		y = y + math.random(-1,1)
 

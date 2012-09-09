@@ -4,27 +4,26 @@ entities.remove = {}
 entities.refresh = false
 
 -- All the types of entities
+require	"entities_player"
 require	"entities_eyeball"
 require	"entities_snake"
 
-function entities.new(type)
-	local entity = _G[type].new()
+function entities.new(type, view, control)
+	local entity = _G["entities_"..type].new(view, control)
 	table.insert(entities.data, entity)
+end
 
-	
-	--local eye1 = eyeball.new()
-	--local eye2 = eyeball.new()
-
-	--eye1.setPosition(333, 123)
-	--eye2.setPosition(45, 64)
-
-	--print("Eye1: "..eye1.getX()..":"..eye1.getY())
-	--print("Eye2: "..eye2.getX()..":"..eye2.getY())
+function entities.view(i)
+	entities.viewing = i
+	for i = 1, #entities.data do
+		entities.data[i].view = false
+	end
+	entities.data[entities.viewing].view = true
 end
 
 function entities.update(dt)
 	for i = 1, #entities.data do
-		entities.data[i].update()
+		entities.data[i].update(dt, i)
 	end
 
 	-- Figure out remove later.

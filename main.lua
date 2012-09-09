@@ -9,7 +9,7 @@ require "gui"
 require "hud"
 require "map"
 require "env"
-require "players"
+--require "players"
 require "entities"
 require "client"
 
@@ -42,14 +42,14 @@ function love.load()
 
 
 	ACTIVE_PLAYER = 1 --math.random(99999)
-	players.new("BODY_skeleton", ACTIVE_PLAYER)
-	players.new("soldier", 2)
-	players.new("princess", 3)
-	players.new("hollow_woman", 4)
+	--players.new("BODY_skeleton", ACTIVE_PLAYER)
+	--players.new("soldier", 2)
+	--players.new("princess", 3)
+	--players.new("hollow_woman", 4)
 
 	map = Map.create()
 	map:load()
-	entities.new("eyeball")
+	entities.new("player", true, true)
 	entities.new("eyeball")
 	entities.new("eyeball")
 	entities.new("eyeball")
@@ -93,7 +93,7 @@ function love.keypressed(key)
 		map:unload()
 	end
 	if key == "n" then
-		poop = 2
+		poop = #entities.data
 		table.insert(entities.remove, poop)
 		entities.refresh = true
 	end
@@ -118,14 +118,13 @@ end
 function love.update(dt)
 	dt = dt * TIMESCALE
 
-	players.update(dt)
+	--players.update(dt)
 	entities.update(dt)
-
 	-- Update the camera according to the active players position
-	camera:center(players.list[ACTIVE_PLAYER].xr, players.list[ACTIVE_PLAYER].yr)
+	camera:center(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
 
 	-- Update the map according to the active players position
-	map:update(players.list[ACTIVE_PLAYER].xr, players.list[ACTIVE_PLAYER].yr)
+	map:update(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
 
 	env.update(dt)
 end

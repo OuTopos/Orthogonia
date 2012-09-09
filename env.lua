@@ -29,6 +29,7 @@ env.hour = 12
 env.nexthour = env.hour + 1
 env.counter = 0
 env.color = env.colors[env.hour]
+env.fade = love.graphics.newImage("images/fade.png")
 
 function env.update(dt)
 	env.counter = env.counter + dt
@@ -63,9 +64,13 @@ end
 function env.draw()
 	-- Test post effects.
 	love.graphics.setColor(env.color)
-	love.graphics.setColorMode("modulate")
+	--love.graphics.setColorMode("modulate")
 	--love.graphics.setBlendMode("multiplicative")
 	love.graphics.rectangle("fill", camera.x, camera.y, screen.width, screen.height)
 
-	love.graphics.setBlendMode("alpha")
+	--love.graphics.setColor(255, 255, 255, 204)
+	--love.graphics.setBlendMode("multiplicative")
+	--love.graphics.draw(env.fade, camera.x, camera.y)
+
+	--love.graphics.setBlendMode("alpha")
 end

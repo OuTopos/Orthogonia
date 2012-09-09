@@ -1,5 +1,5 @@
 screen = {}
-screen.width = 340 -- use love.graphics.getMode() later
+screen.width = 320 -- use love.graphics.getMode() later
 screen.height = 200 -- use love.graphics.getMode() later
 screen.scale = 3
 
