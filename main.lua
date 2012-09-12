@@ -10,6 +10,8 @@ require "hud"
 require "map"
 require "env"
 --require "players"
+
+require "collision"
 require "entities"
 require "client"
 
@@ -69,6 +71,8 @@ function love.load()
 	entities.new("eyeball")
 	entities.new("eyeball")
 	entities.new("snake")
+
+	collision.new(100, 100, 100, 100)
 end
 
 function love.keypressed(key)
@@ -118,8 +122,8 @@ end
 function love.update(dt)
 	dt = dt * TIMESCALE
 
-	--players.update(dt)
 	entities.update(dt)
+	collision.update(dt)
 	-- Update the camera according to the active players position
 	camera:center(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
 
@@ -137,6 +141,8 @@ function love.draw()
 
 	-- Draw env stuff
 	env.draw()
+	-- Draw collision
+	collision.draw()
 
 	-- Draw the GUI
 	gui.draw()

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="name" value="The Forest"/>
+ </properties>
+ <tileset firstgid="1" name="magecity" tilewidth="32" tileheight="32">
+  <image source="../../images/magecity.png" width="256" height="1450"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztU0EOADAE4/+f3lUkYy120kR2oVVDRUQ/xw0shwIcESL+6Vmoead0Mv8Vv6gPr4f2h+TbOkaD3WNEI+Oq3FSmEdW99hFpMDuE7Ag7G681fYNZXx083s8G9xddmOZfLA5C7QEy
+  </data>
+ </layer>
+</map>

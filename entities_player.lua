@@ -9,11 +9,13 @@ function entities_player.new(view, control)
 	buffer:addSheet(sheet, 64, 64)
 
 	local x, y, z = 359, 359, 32
+	local xr, yr, zr = x, y, z
 	local xvel, yvel = 0, 0
 	local speed = 20
 	local friction = 10
 
 
+	collision.new(x, y, 32, 8)
 
 	function self.update(dt, i)
 		if view then
@@ -22,6 +24,13 @@ function entities_player.new(view, control)
 		if control then
 			self.control(dt, i)
 		end
+
+		-- Update rounded x y
+		xr = math.floor( x + 0.5 )
+		yr = math.floor( y + 0.5 )
+
+		-- Update collision
+		collision.data[1]:moveTo(xr, yr)
 
 		-- Draw
 		buffer:add(sheet, 1, self.getX(), self.getY(), z, 32, 48, 1, 1, 0)

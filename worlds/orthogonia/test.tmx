@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="env" value="something"/>
+  <property name="name" value="The Mage City"/>
+ </properties>
  <tileset firstgid="1" name="magecity" tilewidth="32" tileheight="32">
   <image source="../../images/magecity.png" width="256" height="1450"/>
  </tileset>
@@ -33,6 +37,7 @@
    eJzt2Ttug0AUBVA27cSbsZQmVcpUkSuEU2BvKoOCLYSMTCCYB5wj3Wb46GmumIYsG+dt5PNrkdcp6nynnP+Y09OnXof2Xlf72O6jGPDe/L8G3JCqi0trrcx+97KsrxV37ulDH/1dv4WufS573POIPmLRRyz6iEUfsegjFn3Eoo9Y9BFL1ccu5SXlNWU/7zib5/uIRR+x6COWJfVxmHuAJ1hSH+9zD7BBXynHuYfg5vo/p/LRSFPXOtP6bKTPOqzdkHPI2TWdIeeQswsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCX4AT1wQf8=
   </data>
  </layer>
+ <objectgroup name="Object Layer 2" width="100" height="100"/>
  <objectgroup name="block" width="100" height="100">
   <object gid="321" x="768" y="288"/>
   <object x="480" y="160">
@@ -43,6 +48,21 @@
   </object>
   <object x="1088" y="768">
    <polygon points="0,0 128,0 128,-96 224,-96 224,-64 256,-64 256,-192 288,-192 288,-64 320,-64 320,-96 416,-96 416,0 544,0 544,-288 0,-288"/>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 7" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+ <objectgroup name="portals" width="100" height="100">
+  <object name="North passage to the forest" type="portal" x="224" y="0" width="32" height="32">
+   <properties>
+    <property name="map" value="forest"/>
+    <property name="x" value="10"/>
+    <property name="y" value="10"/>
+    <property name="z" value="1"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
