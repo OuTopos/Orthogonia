@@ -4,24 +4,21 @@ hud.enabled = false
 function hud.draw()
 	if hud.enabled then
 
-		-- The tile if the player would have been 32 x 32
-		love.graphics.setColor(0, 0, 0, 102)
-		love.graphics.rectangle("line", entities.data[entities.viewing].getX()-16, entities.data[entities.viewing].getY()-16, 32, 32)
+		-- Draw collision
+		collision.draw()
 
-		-- Player collission box
-		love.graphics.setColor(255, 0, 0, 102)
-		love.graphics.rectangle("fill", entities.data[entities.viewing].getX()-16, entities.data[entities.viewing].getY(), 32, 8)
-
-		-- Player position
-		love.graphics.setColor(0, 255, 0, 255)
-		love.graphics.circle("fill", entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY(), 1, 16)
-
-		-- Player numbers
-		love.graphics.setColor(0, 255, 255, 255)
+		-- Entities
 		for i = 1, #entities.data do
-			love.graphics.print(i, entities.data[i].getX() + 2, entities.data[i].getY() + 0)
+			love.graphics.setColor(255, 255, 255, 102)
+			love.graphics.rectangle("fill", entities.data[i].getX(), entities.data[i].getY(), 32, 32)
+			if entities.data[i].collision then
+				love.graphics.setColor(255, 0, 0, 153)
+				love.graphics.rectangle("fill", entities.data[i].getCollision())
+			end
+			love.graphics.setColor(0, 255, 255, 255)
+			love.graphics.print(i, entities.data[i].getX(), entities.data[i].getY())
 		end
-
+		
 		-- Text background
 		love.graphics.setColor(0, 0, 0, 204)
 		love.graphics.rectangle("fill", camera.x, camera.y, 100, 82)	

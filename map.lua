@@ -51,7 +51,7 @@ function Map:update(x, y)
 							
 							if testmap.layers[z+1].data[y*self.size.x+x+1] then
 								if testmap.layers[z+1].data[y*self.size.x+x+1] > 0 then
-									buffer:add("magecity", testmap.layers[z+1].data[y*self.size.x+x+1], x*self.tileSize, y*self.tileSize, z*self.tileSize, self.tileSize/2, self.tileSize/2, 1, 1, 0)
+									buffer:add("magecity", testmap.layers[z+1].data[y*self.size.x+x+1], x*self.tileSize, y*self.tileSize, z*self.tileSize, 0, 0, 1, 1, 0)
 								end
 							end
 

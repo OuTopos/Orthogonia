@@ -72,7 +72,11 @@ function love.load()
 	entities.new("eyeball")
 	entities.new("snake")
 
-	collision.new(100, 100, 100, 100)
+	collision.new(128, 128, 64, 64)
+	collision.new(224, 128, 32, 32)
+
+	collision.new(96, 224, 64, 32)
+	collision.new(128, 96, 32, 32)
 end
 
 function love.keypressed(key)
@@ -141,8 +145,6 @@ function love.draw()
 
 	-- Draw env stuff
 	env.draw()
-	-- Draw collision
-	collision.draw()
 
 	-- Draw the GUI
 	gui.draw()

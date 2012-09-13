@@ -1,7 +1,6 @@
 entities_eyeball= {}
 
 function entities_eyeball.new(view, control)
-	print("Hello! I am an eyeball!")
 	local self = {}
 
 	--local input, view = initial_input or false, initial_view or false
@@ -20,7 +19,7 @@ function entities_eyeball.new(view, control)
 		y = y + math.random(-1,1)
 
 		-- Draw
-		buffer:add(sheet, math.random(1,3)*3+1, x, y, z, 16, 22, 1, 1, 0)
+		buffer:add(sheet, math.random(1,3)*3+1, x, y, z, 0, 8, 1, 1, 0)
 	end
 
 	function self.setPosition(xn, yn)

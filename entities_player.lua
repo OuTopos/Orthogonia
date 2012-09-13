@@ -1,8 +1,9 @@
 entities_player = {}
 
 function entities_player.new(view, control)
-	print("Hello! I am a player!")
 	local self = {}
+
+
 	local remove = false
 
 	local sheet = "princess"
@@ -14,8 +15,30 @@ function entities_player.new(view, control)
 	local speed = 20
 	local friction = 10
 
+	-- COLLISION
+	self.collision = true
+	local collision = {}
+	collision.w = 28
+	collision.h = 16
+	collision.l = xr + 2
+	collision.t = yr + 16
+	function self.updateCollision()
+		collision.l = xr + 2
+		collision.t = yr + 16
+	end
+	function self.getCollision()
+		return collision.l, collision.t, collision.w, collision.h
+	end
+	function self.collide(obj, dx, dy)
+		print(dx, dy)
+		x = x + dx
+		y = y + dy
+		xr = math.floor( x + 0.5 )
+		yr = math.floor( y + 0.5 )
+		self.updateCollision()
+	end
+	bump.add(self)
 
-	collision.new(x, y, 32, 8)
 
 	function self.update(dt, i)
 		if view then
@@ -30,10 +53,14 @@ function entities_player.new(view, control)
 		yr = math.floor( y + 0.5 )
 
 		-- Update collision
-		collision.data[1]:moveTo(xr, yr)
+		self.updateCollision()
 
+		self.animate(dt, i)
+	end
+
+	function self.animate(dt, i)
 		-- Draw
-		buffer:add(sheet, 1, self.getX(), self.getY(), z, 32, 48, 1, 1, 0)
+		buffer:add(sheet, 1, self.getX(), self.getY(), z, 16, 32, 1, 1, 0)
 	end
 
 	function self.control(dt, i)

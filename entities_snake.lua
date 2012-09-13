@@ -1,7 +1,6 @@
 entities_snake = {}
 
 function entities_snake.new(view, control)
-	print("Hello! I am a snake!")
 	local self = {}
 	local remove = false
 	local sheet = "entities/snake"
@@ -14,7 +13,7 @@ function entities_snake.new(view, control)
 		y = y + math.random(-1,1)
 
 		-- Draw
-		buffer:add(sheet, math.random(4,6), x, y, z, 16, 16, 1, 1, 0)
+		buffer:add(sheet, math.random(4,6), x, y, z, 0, 0, 1, 1, 0)
 	end
 
 	function self.setPosition(xn, yn)
