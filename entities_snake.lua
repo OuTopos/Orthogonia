@@ -11,9 +11,11 @@ function entities_snake.new(view, control)
 	function self.update(dt, i)
 		x = x + math.random(-1,1)
 		y = y + math.random(-1,1)
+	end
 
+	function self.draw()
 		-- Draw
-		buffer:add(sheet, math.random(4,6), x, y, z, 0, 0, 1, 1, 0)
+		--buffer:add(sheet, math.random(4,6), x, y, z, 0, 0, 1, 1, 0)
 	end
 
 	function self.setPosition(xn, yn)

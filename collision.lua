@@ -5,10 +5,11 @@ bump = require "lib.bump"
 -- When a collision occurs, call collideWithBlock with the appropiate parameters
 function bump.collision(obj1, obj2, dx, dy)
 	print('booom')
-	if obj1.collision then
+	if obj1.collide then
 		print('booom1')
 		obj1.collide(obj2, dx,dy)
-	elseif obj2.collision then
+	end
+	if obj2.collide then
 		print('booom2')
 		obj2.collide(obj1, -dx,-dy)
 	end
@@ -35,10 +36,10 @@ end
 collision = {}
 collision.data = {}
 
-function collision.new(x, y, width, height)
+function collision.new(x, y, width, height, type)
 	local block = {l=x,t=y,w=width,h=height}
 	table.insert(collision.data, block)
-	bump.add(block)
+	bump.addStatic(block)
 end
 
 function collision.update(dt)
@@ -54,6 +55,15 @@ function collision.draw()
 	end
 
 	bump_debug.draw(0,0,1280,1280)
+end
+
+
+
+function collision.reset()
+	for i = 1, #collision.data do
+		bump.remove(collision.data[i])
+	end
+	collision.data = {}
 end
 
 

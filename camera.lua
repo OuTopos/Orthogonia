@@ -15,6 +15,12 @@ camera.position = {}
 camera.position.x = camera.x
 camera.position.y = camera.y
 
+camera.boundaries = {}
+camera.boundaries.left = 0
+camera.boundaries.right = 1000
+camera.boundaries.top = 0
+camera.boundaries.bottom = 1000
+
 
 
 
@@ -58,4 +64,23 @@ end
 function camera:center(dx, dy)
 	self.x = dx - screen.width / 2
 	self.y = dy - screen.height / 2
+
+	if self.x < camera.boundaries.left then
+		self.x = camera.boundaries.left
+	elseif self.x > camera.boundaries.right then
+		self.x = camera.boundaries.right
+	end
+
+	if self.y < camera.boundaries.top then
+		self.y = camera.boundaries.top
+	elseif self.y > camera.boundaries.bottom then
+		self.y = camera.boundaries.bottom
+	end
+end
+
+function camera:setBoundaries(left, right, top, bottom)
+	camera.boundaries.left = left
+	camera.boundaries.right = right - screen.width
+	camera.boundaries.top = top
+	camera.boundaries.bottom = bottom - screen.height
 end

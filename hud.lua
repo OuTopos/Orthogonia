@@ -3,6 +3,9 @@ hud.enabled = false
 
 function hud.draw()
 	if hud.enabled then
+		-- Setting tilesizes
+		local tilewidth = map.loaded.tilewidth or 0
+		local tileheight = map.loaded.tileheight or 0
 
 		-- Draw collision
 		collision.draw()
@@ -27,7 +30,7 @@ function hud.draw()
 		love.graphics.setColor(0, 255, 0, 255)
 		love.graphics.print("FPS: "..love.timer.getFPS(), camera.x + 2, camera.y + 2)
 		love.graphics.print("Cord: "..entities.data[entities.viewing].getX()..":"..entities.data[entities.viewing].getY(), camera.x + 2, camera.y + 12)
-		love.graphics.print("Tile: "..math.floor( entities.data[entities.viewing].getX() / map.tileSize + 0.5 )..":"..math.floor( entities.data[entities.viewing].getY() / map.tileSize + 0.5 ), camera.x + 2, camera.y + 22)
+		love.graphics.print("Tile: "..math.floor( entities.data[entities.viewing].getX() / tilewidth + 0.5 )..":"..math.floor( entities.data[entities.viewing].getY() / tileheight + 0.5 ), camera.x + 2, camera.y + 22)
 		love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 32)
 		love.graphics.print("Buffer: "..buffer.length, camera.x + 2, camera.y + 42)
 

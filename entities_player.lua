@@ -2,21 +2,35 @@ entities_player = {}
 
 function entities_player.new(view, control)
 	local self = {}
+	self.type = "player"
 
 
 	local remove = false
 
-	local sheet = "princess"
-	buffer:addSheet(sheet, 64, 64)
+
 
 	local x, y, z = 359, 359, 32
 	local xr, yr, zr = x, y, z
 	local xvel, yvel = 0, 0
-	local speed = 20
-	local friction = 10
+	local speed = 1000
+	local friction = 0.1
+
+	-- SPRITES
+	buffer:addSheet("BODY_skeleton", 64, 64)
+	buffer:addSheet("HEAD_chain_armor_hood", 64, 64)
+	buffer:addSheet("HEAD_chain_armor_helmet", 64, 64)
+	buffer:addSheet("FEET_shoes_brown", 64, 64)
+
+	local spriteset = buffer.spriteset(xr, yr, z, 16, 32)
+	table.insert(spriteset.data, {sheet = "BODY_skeleton", quad = 14} )
+	--table.insert(spriteset.data, {sheet = "HEAD_chain_armor_hood", quad = 14} )
+	table.insert(spriteset.data, {sheet = "HEAD_chain_armor_helmet", quad = 14} )
+	table.insert(spriteset.data, {sheet = "FEET_shoes_brown", quad = 14} )
+
+
+
 
 	-- COLLISION
-	self.collision = true
 	local collision = {}
 	collision.w = 28
 	collision.h = 16
@@ -35,12 +49,17 @@ function entities_player.new(view, control)
 		y = y + dy
 		xr = math.floor( x + 0.5 )
 		yr = math.floor( y + 0.5 )
+
+		spriteset.x = xr
+		spriteset.y = yr
 		self.updateCollision()
 	end
 	bump.add(self)
 
 
 	function self.update(dt, i)
+		--buffer:add(sprites[1])
+
 		if view then
 			entities.view(i)
 		end
@@ -55,34 +74,37 @@ function entities_player.new(view, control)
 		-- Update collision
 		self.updateCollision()
 
-		self.animate(dt, i)
+		-- Update sprite
+		spriteset.x = xr
+		spriteset.y = yr
+
 	end
 
-	function self.animate(dt, i)
+	function self.draw()
 		-- Draw
-		buffer:add(sheet, 1, self.getX(), self.getY(), z, 16, 32, 1, 1, 0)
+		buffer:add(spriteset)
 	end
 
 	function self.control(dt, i)
-		x = x + xvel
-		y = y + yvel
+		x = x + xvel * dt
+		y = y + yvel * dt
 
-		xvel = xvel * (1 - math.min(dt*friction, 1))
-		yvel = yvel * (1 - math.min(dt*friction, 1))
+		xvel = xvel - xvel * friction
+		yvel = yvel - yvel * friction 
 
-		if love.keyboard.isDown("right") and xvel < 15 then
+		if love.keyboard.isDown("right") and xvel < 100 then
 			xvel = xvel + speed * dt
 		end
 
-		if love.keyboard.isDown("left") and xvel > -15 then
+		if love.keyboard.isDown("left") and xvel > -100 then
 			xvel = xvel - speed * dt
 		end
 
-		if love.keyboard.isDown("down") and yvel < 15 then
+		if love.keyboard.isDown("down") and yvel < 100 then
 			yvel = yvel + speed * dt
 		end
 
-		if love.keyboard.isDown("up") and yvel > -15 then
+		if love.keyboard.isDown("up") and yvel > -100 then
 			yvel = yvel - speed * dt
 		end
 	end

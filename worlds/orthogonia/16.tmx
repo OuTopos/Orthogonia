@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="16tiles" tilewidth="16" tileheight="16">
+  <image source="../../images/tilesets/lorestrome/16tiles.png" trans="ff00ff" width="320" height="853"/>
+ </tileset>
+ <layer name="0" width="100" height="100">
+  <properties>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt19ENgCAMBUCiO8j+mzqBUYQKjfdxiR+amBYedCulbKRWF/iHP+ip8/7gnaPz+7+qN7WL7i1kErHW5VOc3mxD7aFFvXh+6+p8sL/GUcv5Wu5B+jVWa06Z+eaLmhvMI9+yl8ZxLuShV3FmZ4rert0fyMJe+Za5Ij+1zk/utbPuoY/cAVYgi/JyFwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEY5AW3XUEU=
+  </data>
+ </layer>
+ <layer name="1" width="100" height="100">
+  <properties>
+   <property name="z" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1rduFFEYhuGxC6INNQYcMC3JkYocetvk3jJQYCiJBTdAKLgG4BqAqyI3fIumGI2QEFp5Rug8j/TqaHalnaPza3enqgDg//R5pKq+pK/pW/qefqSfI33vrEw7R6tqV9qdxtJ42pP2jva9szIdzLlPpqk0nWbSoTRrHr04kXOfS/NpIS2mpbT8j/MYS+Ot6M90mmlFfxbSYqulXndUts10v9WDXndUrpU8G6/WrdXPydvy/7M97Sj0ueBMOpvOpfMd33s9M5hNh9NGPY+JzGF/OlDoPNbSlXQ1Xev43oN5LKeT9Tr4jhzNHI6l44XOYyPdTnfS3Y7v/TDn/6iu+R0p2eP0JD1Nz4b4nFPpdON6X852oj7fyaxTfznrdfP47UV6mV6l10N8zkpabVwfGfz21Oc7l3XePLbcvdY6DPMY3vPWSr/etNami+lSutx47UK6vtWbKtjb9C69/8N7N9LNdKvTHZXtQ/qYPvW9EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADr1C9r+LAQ=
+  </data>
+ </layer>
+</map>

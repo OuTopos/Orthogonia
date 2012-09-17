@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="8" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="name" value="Tat's Hut"/>
+ </properties>
+ <tileset firstgid="1" name="inside01" tilewidth="32" tileheight="32">
+  <image source="../../images/tilesets/lorestrome/inside01.png" width="256" height="3507"/>
+ </tileset>
+ <tileset firstgid="873" name="inside2" tilewidth="32" tileheight="32">
+  <image source="../../images/tilesets/lorestrome/inside2.png" width="256" height="3507"/>
+ </tileset>
+ <layer name="0" width="10" height="8">
+  <properties>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBg48IsZFf9E4yOr+8mMnUZXR6x52PBPKCbkXmQAADRjIZQ=
+  </data>
+ </layer>
+ <layer name="0 - Detail A" width="10" height="8">
+  <properties>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBg48JaZgeEdM4K/DcjeDsQ7mFHVfQXyv0HFgoDYjZWBwR2IT6GpQwd+QDX+rFR1MgYAAEGTCF4=
+  </data>
+ </layer>
+ <layer name="1" width="10" height="8">
+  <properties>
+   <property name="z" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYKA+aGFmYGiD4lYgXgfE64F4AxBzsGCq/wEU90LitwJxGw6zg9H4T5lJd99hoJ67WPQ9Boo9IdE8AMynC0I=
+  </data>
+ </layer>
+ <layer name="1 - Detail A" width="10" height="8">
+  <properties>
+   <property name="z" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYKA+uMnMwHCRmTQ9/kjsQyTqJQecpZIdAIPmA5U=
+  </data>
+ </layer>
+ <layer name="2" width="10" height="8">
+  <properties>
+   <property name="z" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYCAe1DAzMOizMDDUAelaIF4GxMuBeAUQM7Bgqv/AjClWR4J91AK3ge64g8Ut1AAAqKQG5A==
+  </data>
+ </layer>
+ <layer name="2 - Detail A" width="10" height="8">
+  <properties>
+   <property name="z" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPmLGQqXGYAQA9DAA7
+  </data>
+ </layer>
+ <layer name="3" width="10" height="8">
+  <properties>
+   <property name="z" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzrZmZg6CGAe4F4MhATAlOHkbrZQDwHCfcj6euDis0FYgCCbxGI
+  </data>
+ </layer>
+ <layer name="3 - Detail A" width="10" height="8">
+  <properties>
+   <property name="z" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYMAO9jMzMBxgxiE5CuAAAMAFAYY=
+  </data>
+ </layer>
+ <objectgroup color="#55aaff" name="portals" width="10" height="8">
+  <object name="door_portal" x="160" y="272" width="64" height="16">
+   <properties>
+    <property name="map" value="test"/>
+    <property name="world" value="orthogonia"/>
+    <property name="x" value="17"/>
+    <property name="y" value="5"/>
+    <property name="z" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="block" width="10" height="8">
+  <properties>
+   <property name="behavior" value="block"/>
+  </properties>
+  <object x="0" y="0" width="32" height="256"/>
+  <object x="32" y="0" width="256" height="96"/>
+  <object x="288" y="0" width="32" height="256"/>
+  <object x="224" y="224" width="64" height="32"/>
+  <object x="32" y="224" width="128" height="32"/>
+  <object x="224" y="192" width="64" height="32"/>
+  <object x="256" y="136" width="32" height="24"/>
+  <object x="32" y="192" width="64" height="32"/>
+  <object x="96" y="112" width="32" height="16"/>
+  <object x="128" y="112" width="32" height="48"/>
+  <object x="224" y="96" width="64" height="40"/>
+  <object x="208" y="96" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#55ff00" name="spawn" width="10" height="8">
+  <object name="door" x="176" y="224" width="32" height="32"/>
+ </objectgroup>
+</map>

@@ -3,11 +3,11 @@ ACTIVE_PLAYER = 1
 
 
 require "screen"
-require "buffer"
 require "camera"
+require "buffer"
+require "map"
 require "gui"
 require "hud"
-require "map"
 require "env"
 --require "players"
 
@@ -49,8 +49,6 @@ function love.load()
 	--players.new("princess", 3)
 	--players.new("hollow_woman", 4)
 
-	map = Map.create()
-	map:load()
 	entities.new("player", true, true)
 	entities.new("eyeball")
 	entities.new("eyeball")
@@ -72,11 +70,11 @@ function love.load()
 	entities.new("eyeball")
 	entities.new("snake")
 
-	collision.new(128, 128, 64, 64)
-	collision.new(224, 128, 32, 32)
+	--collision.new(128, 128, 64, 64)
+	--collision.new(224, 128, 32, 32)
 
-	collision.new(96, 224, 64, 32)
-	collision.new(128, 96, 32, 32)
+	--collision.new(96, 224, 64, 32)
+	--collision.new(128, 96, 32, 32)
 end
 
 function love.keypressed(key)
@@ -97,8 +95,18 @@ function love.keypressed(key)
 			buffer.enabled = true
 		end
 	end
+
 	if key == "m" then
-		map:unload()
+		map.unload()
+	end
+	if key == "q" then
+		map.load("house1")
+	end
+	if key == "w" then
+		map.load("test")
+	end
+	if key == "e" then
+		map.load("16")
 	end
 	if key == "n" then
 		poop = #entities.data
@@ -132,7 +140,7 @@ function love.update(dt)
 	camera:center(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
 
 	-- Update the map according to the active players position
-	map:update(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
+	map.update(camera.x, camera.y)
 
 	env.update(dt)
 end
@@ -140,7 +148,12 @@ end
 function love.draw()
 	camera:set()
 
+	
 	-- Draw the sprite buffer
+	if next(buffer.data) == nil then
+		entities.draw()
+		map.draw()
+	end
 	buffer:draw()
 
 	-- Draw env stuff

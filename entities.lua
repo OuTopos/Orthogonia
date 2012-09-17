@@ -37,3 +37,10 @@ function entities.update(dt)
 		entities.refresh = false
 	end
 end
+
+function entities.draw()
+	-- Instead of actually drawing it's being sent to the buffer.
+	for i = 1, #entities.data do
+		entities.data[i].draw(dt, i)
+	end
+end
