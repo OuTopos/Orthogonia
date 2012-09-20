@@ -1,6 +1,6 @@
 entities_player = {}
 
-function entities_player.new(view, control)
+function entities_player.new(view, control, xn, yn)
 	local self = {}
 	self.type = "player"
 
@@ -9,19 +9,22 @@ function entities_player.new(view, control)
 
 
 
-	local x, y, z = 359, 359, 32
+	local x, y, z = xn, yn, 32
 	local xr, yr, zr = x, y, z
 	local xvel, yvel = 0, 0
 	local speed = 1000
 	local friction = 0.1
 
 	-- SPRITES
+	buffer:addSheet("tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", 64, 64)
 	buffer:addSheet("BODY_skeleton", 64, 64)
 	buffer:addSheet("HEAD_chain_armor_hood", 64, 64)
 	buffer:addSheet("HEAD_chain_armor_helmet", 64, 64)
 	buffer:addSheet("FEET_shoes_brown", 64, 64)
 
 	local spriteset = buffer.spriteset(xr, yr, z, 16, 32)
+
+	table.insert(spriteset.data, {sheet = "tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", quad = 14} )
 	table.insert(spriteset.data, {sheet = "BODY_skeleton", quad = 14} )
 	--table.insert(spriteset.data, {sheet = "HEAD_chain_armor_hood", quad = 14} )
 	table.insert(spriteset.data, {sheet = "HEAD_chain_armor_helmet", quad = 14} )
@@ -44,40 +47,64 @@ function entities_player.new(view, control)
 		return collision.l, collision.t, collision.w, collision.h
 	end
 	function self.collide(obj, dx, dy)
-		print(dx, dy)
-		x = x + dx
-		y = y + dy
-		xr = math.floor( x + 0.5 )
-		yr = math.floor( y + 0.5 )
-
-		spriteset.x = xr
-		spriteset.y = yr
+		self.updatePosition(x + dx, y + dy)
 		self.updateCollision()
 	end
 	bump.add(self)
 
 
-	function self.update(dt, i)
-		--buffer:add(sprites[1])
+	function self.update(dt)
+		self.updateInput(dt)
+		self.updateCollision()
+	end
 
-		if view then
-			entities.view(i)
+	function self.updateInput(dt)
+		x = x + xvel * dt
+		y = y + yvel * dt
+
+		xvel = xvel - xvel * friction
+		yvel = yvel - yvel * friction 
+
+		if love.keyboard.isDown("right") then
+			xvel = xvel + speed * dt
 		end
-		if control then
-			self.control(dt, i)
+		if love.keyboard.isDown("left") and xvel > -100 then
+			xvel = xvel - speed * dt
+		end
+		if xvel > 100 then
+			xvel = 100
+		elseif xvel < -100 then
+			xvel = -100
 		end
 
-		-- Update rounded x y
+
+		if love.keyboard.isDown("down") then
+			yvel = yvel + speed * dt
+		end
+		if love.keyboard.isDown("up") then
+			yvel = yvel - speed * dt
+		end
+		if yvel > 100 then
+			yvel = 100
+		elseif yvel < -100 then
+			yvel = -100
+		end
+
+		self.updatePosition()
+	end
+
+	function self.updatePosition(xn, yn)
+		x = xn or x
+		y = yn or y
 		xr = math.floor( x + 0.5 )
 		yr = math.floor( y + 0.5 )
-
-		-- Update collision
-		self.updateCollision()
 
 		-- Update sprite
 		spriteset.x = xr
 		spriteset.y = yr
 
+		-- Set the camera
+		camera:center(xr, yr)
 	end
 
 	function self.draw()
@@ -85,28 +112,8 @@ function entities_player.new(view, control)
 		buffer:add(spriteset)
 	end
 
-	function self.control(dt, i)
-		x = x + xvel * dt
-		y = y + yvel * dt
-
-		xvel = xvel - xvel * friction
-		yvel = yvel - yvel * friction 
-
-		if love.keyboard.isDown("right") and xvel < 100 then
-			xvel = xvel + speed * dt
-		end
-
-		if love.keyboard.isDown("left") and xvel > -100 then
-			xvel = xvel - speed * dt
-		end
-
-		if love.keyboard.isDown("down") and yvel < 100 then
-			yvel = yvel + speed * dt
-		end
-
-		if love.keyboard.isDown("up") and yvel > -100 then
-			yvel = yvel - speed * dt
-		end
+	function self.destroy()
+		bump.remove(self)
 	end
 
 	-- Basic functions

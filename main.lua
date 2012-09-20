@@ -25,11 +25,11 @@ function love.load()
 	love.graphics.setDefaultImageFilter( "nearest", "nearest" )
 	--love.graphics.setMode(screen.width, screen.height, false, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
 
-	--imagefont = love.graphics.newImage("images/imagefont2.png")
-	--font = love.graphics.newImageFont(imagefont,
-	--" abcdefghijklmnopqrstuvwxyz" ..
-	--"ABCDEFGHIJKLMNOPQRSTUVWXYZ0" ..
-	--"123456789.,!?-+/():;%&`'*#=[]\"")
+	imagefont2 = love.graphics.newImage("images/imagefont2.png")
+	font2 = love.graphics.newImageFont(imagefont2,
+	" abcdefghijklmnopqrstuvwxyz" ..
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0" ..
+	"123456789.,!?-+/():;%&`'*#=[]\"")
 
 	imagefont = love.graphics.newImage("images/font.png")
 	font = love.graphics.newImageFont(imagefont," abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"")
@@ -43,38 +43,40 @@ function love.load()
 	gui.load()
 
 
-	ACTIVE_PLAYER = 1 --math.random(99999)
+	--ACTIVE_PLAYER = 1 --math.random(99999)
 	--players.new("BODY_skeleton", ACTIVE_PLAYER)
 	--players.new("soldier", 2)
 	--players.new("princess", 3)
 	--players.new("hollow_woman", 4)
 
-	entities.new("player", true, true)
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("eyeball")
-	entities.new("snake")
+	--entities.new("player", true, true)
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("eyeball")
+	--entities.new("snake")
 
 	--collision.new(128, 128, 64, 64)
 	--collision.new(224, 128, 32, 32)
 
 	--collision.new(96, 224, 64, 32)
 	--collision.new(128, 96, 32, 32)
+
+	map.load("house1", "bedside")
 end
 
 function love.keypressed(key)
@@ -100,10 +102,10 @@ function love.keypressed(key)
 		map.unload()
 	end
 	if key == "q" then
-		map.load("house1")
+		map.load("house1", "door")
 	end
 	if key == "w" then
-		map.load("test")
+		map.load("test", "tats_house_door")
 	end
 	if key == "e" then
 		map.load("16")
@@ -137,7 +139,7 @@ function love.update(dt)
 	entities.update(dt)
 	collision.update(dt)
 	-- Update the camera according to the active players position
-	camera:center(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
+	--camera:center(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
 
 	-- Update the map according to the active players position
 	map.update(camera.x, camera.y)

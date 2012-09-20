@@ -1,23 +1,38 @@
 map = {}
-map.world = "/worlds/orthogonia/"
 map.view = { x = 0, y = 0, z = 0}
 map.view.size = { x = 13, y = 9, z = 0}
 map.view.buffer = {}
 
-function map.load(file, world)
-	map.world = world or map.world 
+function map.load(name, spawn, world)
+	name = name or "origo"
+	world = world or "orthogonia"
 
-	-- Reseting collision data and unloading previous map.
+	-- Unloading previous map.
 	map.unload()
 
-	-- Loading map
-	map.loaded = require(map.world..file)
+	-- Loading map.
+	map.loaded = require("/worlds/"..world.."/"..name)
 	if map.loaded.orientation == "orthogonal" then
-		-- Loading objects (collision)
+		map.loaded.spawns = {}
+		-- Loading objects layers.
 		for i,layer in ipairs(map.loaded.layers) do
+			-- Block, add to collision.
 			if layer.type == "objectgroup" and layer.properties.behavior == "block" then
 				for i,object in ipairs(layer.objects) do
-					collision.new(object.x, object.y, object.width, object.height)
+					collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior)
+				end
+			end
+			-- Portal, add to collision.
+			if layer.type == "objectgroup" and layer.properties.behavior == "portal" then
+				for i,object in ipairs(layer.objects) do
+					local data = {map = object.properties.map, spawn = object.properties.spawn, world = object.properties.world}
+					collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior, data)
+				end
+			end
+			-- Spawn
+			if layer.type == "objectgroup" and layer.properties.behavior == "spawn" then
+				for i,object in ipairs(layer.objects) do
+					map.loaded.spawns[object.name] = object --{x = object.x, y = object.y, width = object.width, height = object.height
 				end
 			end
 		end
@@ -34,6 +49,12 @@ function map.load(file, world)
 		-- Setting camera boundaries
 		camera:setBoundaries(0, map.loaded.width * map.loaded.tilewidth, 0, map.loaded.height * map.loaded.tileheight)
 
+		-- Spawning player
+		if map.loaded.spawns[spawn] then
+			entities.new("player", true, true, map.loaded.spawns[spawn].x, map.loaded.spawns[spawn].y)
+		else
+			entities.new("player", true, true, 0, 0)
+		end
 	else
 		print("Map is not compatible.")
 		map.unload()
@@ -42,8 +63,9 @@ end
 
 function map.unload()
 	map.loaded = nil
-	buffer:reset()
+	entities.reset()
 	collision.reset()
+	buffer:reset()
 end
 
 function map.findSheet(quad)

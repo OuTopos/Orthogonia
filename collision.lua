@@ -4,15 +4,31 @@ bump = require "lib.bump"
 
 -- When a collision occurs, call collideWithBlock with the appropiate parameters
 function bump.collision(obj1, obj2, dx, dy)
-	print('booom')
-	if obj1.collide then
-		print('booom1')
-		obj1.collide(obj2, dx,dy)
+	if obj1.type == "player" or obj2.type == "player" then
+		local player
+		if obj1.type == "player" then
+			player = obj1
+			other = obj2
+		else
+			player = obj2
+			other = obj1
+			dx = -dx
+			dy = -dy
+		end
+
+		if other.behavior == "portal" then
+			collision.trigger = {"map.load", other.data.map, other.data.spawn, other.data.world}
+		elseif other.behavior == "block" then
+			player.collide(other, dx, dy)
+		end
 	end
-	if obj2.collide then
-		print('booom2')
-		obj2.collide(obj1, -dx,-dy)
-	end
+	--	print('booom1')
+	--	obj1.collide(obj2, dx,dy)
+	--end
+	--if obj2.collide then
+	--	print('booom2')
+	--	obj2.collide(obj1, -dx,-dy)
+	--end
 end
 
 -- only the player collides with stuff. Blocks don't collide with themselves
@@ -35,15 +51,20 @@ end
 
 collision = {}
 collision.data = {}
+--collision.trigger
 
-function collision.new(x, y, width, height, type)
-	local block = {l=x,t=y,w=width,h=height}
-	table.insert(collision.data, block)
-	bump.addStatic(block)
+function collision.new(x, y, width, height, behavior, data)
+	local box = {l=x, t=y, w=width, h=height, behavior=behavior, data=data}
+	table.insert(collision.data, box)
+	bump.addStatic(box)
 end
 
 function collision.update(dt)
 	bump.collide()
+	if collision.trigger then
+		map.load(collision.trigger[2], collision.trigger[3], collision.trigger[4])
+		collision.trigger = nil
+	end
 end
 
 function collision.draw()

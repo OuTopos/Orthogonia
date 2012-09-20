@@ -232,30 +232,6 @@ return {
     },
     {
       type = "objectgroup",
-      name = "portals",
-      visible = true,
-      opacity = 1,
-      properties = {},
-      objects = {
-        {
-          name = "door_portal",
-          type = "",
-          x = 160,
-          y = 272,
-          width = 64,
-          height = 16,
-          properties = {
-            ["map"] = "test",
-            ["world"] = "orthogonia",
-            ["x"] = "17",
-            ["y"] = "5",
-            ["z"] = "1"
-          }
-        }
-      }
-    },
-    {
-      type = "objectgroup",
       name = "block",
       visible = true,
       opacity = 1,
@@ -269,7 +245,7 @@ return {
           x = 0,
           y = 0,
           width = 32,
-          height = 256,
+          height = 288,
           properties = {}
         },
         {
@@ -287,7 +263,7 @@ return {
           x = 288,
           y = 0,
           width = 32,
-          height = 256,
+          height = 288,
           properties = {}
         },
         {
@@ -296,7 +272,7 @@ return {
           x = 224,
           y = 224,
           width = 64,
-          height = 32,
+          height = 64,
           properties = {}
         },
         {
@@ -305,7 +281,7 @@ return {
           x = 32,
           y = 224,
           width = 128,
-          height = 32,
+          height = 64,
           properties = {}
         },
         {
@@ -378,7 +354,9 @@ return {
       name = "spawn",
       visible = true,
       opacity = 1,
-      properties = {},
+      properties = {
+        ["behavior"] = "spawn"
+      },
       objects = {
         {
           name = "door",
@@ -388,6 +366,39 @@ return {
           width = 32,
           height = 32,
           properties = {}
+        },
+        {
+          name = "bedside",
+          type = "",
+          x = 96,
+          y = 160,
+          width = 32,
+          height = 32,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "portal",
+      visible = true,
+      opacity = 1,
+      properties = {
+        ["behavior"] = "portal"
+      },
+      objects = {
+        {
+          name = "door",
+          type = "",
+          x = 160,
+          y = 256,
+          width = 64,
+          height = 32,
+          properties = {
+            ["map"] = "test",
+            ["spawn"] = "tats_house_door",
+            ["world"] = "orthogonia"
+          }
         }
       }
     }

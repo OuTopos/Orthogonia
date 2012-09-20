@@ -8,9 +8,18 @@ require	"entities_player"
 require	"entities_eyeball"
 require	"entities_snake"
 
-function entities.new(type, view, control)
-	local entity = _G["entities_"..type].new(view, control)
+function entities.new(type, view, control, x, y)
+	local entity = _G["entities_"..type].new(view, control, x, y)
 	table.insert(entities.data, entity)
+end
+
+function entities.reset()
+	for i = 1, #entities.data do
+		if entities.data[i].destroy then
+			entities.data[i].destroy()
+		end
+	end
+	entities.data = {}
 end
 
 function entities.view(i)

@@ -5,7 +5,6 @@ buffer.data = {}
 
 function buffer:addSheet(imagePath, gx, gy)
 	if not self.sheets[imagePath] then
-		print(imagePath)
 		local image = love.graphics.newImage( "images/"..imagePath..".png" )
 		local width = image:getWidth()
 		local height = image:getHeight()

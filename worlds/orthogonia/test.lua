@@ -1170,7 +1170,7 @@ return {
       y = 0,
       width = 100,
       height = 100,
-      visible = false,
+      visible = true,
       opacity = 1,
       properties = {
         ["z"] = "4"
@@ -1286,7 +1286,7 @@ return {
       y = 0,
       width = 100,
       height = 100,
-      visible = false,
+      visible = true,
       opacity = 1,
       properties = {
         ["z"] = "5"
@@ -1397,51 +1397,8 @@ return {
     },
     {
       type = "objectgroup",
-      name = "portals",
-      visible = false,
-      opacity = 1,
-      properties = {
-        ["function"] = "portal"
-      },
-      objects = {
-        {
-          name = "North passage to the forest",
-          type = "portal",
-          x = 224,
-          y = 0,
-          width = 32,
-          height = 32,
-          properties = {
-            ["map"] = "forest",
-            ["x"] = "10",
-            ["y"] = "10",
-            ["z"] = "1"
-          }
-        },
-        {
-          name = "",
-          type = "",
-          x = 544,
-          y = 128,
-          width = 32,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 1344,
-          y = 640,
-          width = 32,
-          height = 32,
-          properties = {}
-        }
-      }
-    },
-    {
-      type = "objectgroup",
       name = "block",
-      visible = false,
+      visible = true,
       opacity = 1,
       properties = {
         ["behavior"] = "block"
@@ -1992,6 +1949,59 @@ return {
           type = "",
           x = 1696,
           y = 192,
+          width = 32,
+          height = 32,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "spawn",
+      visible = true,
+      opacity = 1,
+      properties = {
+        ["behavior"] = "spawn"
+      },
+      objects = {
+        {
+          name = "tats_house_door",
+          type = "",
+          x = 544,
+          y = 160,
+          width = 32,
+          height = 32,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "portal",
+      visible = true,
+      opacity = 1,
+      properties = {
+        ["behavior"] = "portal"
+      },
+      objects = {
+        {
+          name = "tats_house_door",
+          type = "",
+          x = 544,
+          y = 128,
+          width = 32,
+          height = 48,
+          properties = {
+            ["map"] = "house1",
+            ["spawn"] = "door",
+            ["world"] = "orthogonia"
+          }
+        },
+        {
+          name = "",
+          type = "",
+          x = 1344,
+          y = 640,
           width = 32,
           height = 32,
           properties = {}

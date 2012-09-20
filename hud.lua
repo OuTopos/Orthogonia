@@ -4,8 +4,12 @@ hud.enabled = false
 function hud.draw()
 	if hud.enabled then
 		-- Setting tilesizes
-		local tilewidth = map.loaded.tilewidth or 0
-		local tileheight = map.loaded.tileheight or 0
+		local tilewidth = 1
+		local tileheight = 1
+		if map.loaded then
+			tilewidth = map.loaded.tilewidth
+			tileheight = map.loaded.tileheight
+		end
 
 		-- Draw collision
 		collision.draw()

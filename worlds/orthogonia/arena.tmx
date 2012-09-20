@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="name" value="Tat's Hut"/>
+ </properties>
+ <tileset firstgid="1" name="base_assets_1" tilewidth="32" tileheight="32">
+  <image source="../../images/tilesets/LPC/base_assets_1.png" width="288" height="768"/>
+ </tileset>
+ <tileset firstgid="217" name="asian" tilewidth="32" tileheight="32">
+  <image source="../../images/tilesets/LPC/asian.png" width="288" height="768"/>
+ </tileset>
+ <layer name="0" width="100" height="100">
+  <properties>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2DFP20AYBuATa8fSMd2qbsDf5C8YRtigG7C1YztC4Af1PjknjihGduI4UfI80iuHOAO613dnOyUAAAAAAAAA2L3LRa6qzyVMrx7/6KRZHB92+U8dseihqY7RxXXO713+U0cixjuu+8cqT+m9h8vqN79y/vQM64kxj+v+JWee85xznz72ExnShT7WV1/3L2nYmOtjczEX6nFbdd3PV3ynj9by/eamKX2MORf0sVkf2+5CH8PnR8lz+jhfxlir9LFeH/XYjz1nDtW216uuHr7mfO84p49xEs91y+tVV37kzHr+Vh+rE+80msWxpD5XnjVucv7l3Oa8pu2sWYdqSB/l3V/9rqPO39R2EM/f8U4k5spbGnffOPY+mhXfXXecu8v5kvMttZ0MfQeij3H3j/PU7gmlk1i3Yr64v+rvs72i73wpiS4uFse4d9rmHDlUY86PWZWYI6epnSf6mF7p4Xzpc1m7jPV0Yg07S+89XFR/x+ehz33003xybnlulC7iO31Mr/RR9vOSk5yfSR9TK+Nfr1PlPstePb1ZR2I/18duuZfdL/rYL/rYL/oAAAAAAAAAAAAAAAAAAAAAAAAAANjMf5+vF+I=
+  </data>
+ </layer>
+ <layer name="0 - Detail A" width="100" height="100">
+  <properties>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1zFOAlEUhtE7K3EnNjZ0Sqd24lZQ1I1oqZ0tLUZdEBb+xMQCpzJm3iDnJF/DNDe83DeZKgAAAAAAAAAA4DduuqrbdNe1nmS/vKa39J7m+e+v0nVaOAcAAP6h+/TQegi+Paan1kPAH/JdvXtW5b3QynE6SdOt351JG6fpLJ33PFsOPAtf53GYLnuebXbkpezJUDZ31aR+7sY6faSjvO8POnfXUC7SrPp3Y5u7a1ycx3g8l+/wMbEb47JqPQAAAAAAAAAAAAAAAAAAAAAAAAAAAADsiU8mKB4d
+  </data>
+ </layer>
+ <layer name="0 - Detail B" width="100" height="100">
+  <properties>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1TEKgEAMBMC8WLC1trGwtVAf6wXkvpAUM7B9YEkSAQAAAAAAAAAAAAAAAEB3Z/UATOvIVT0Ek93oZRvZq4cgjj9LuFdd6KKPN/yOTvJW+R19ZB936KSL7OIJdwsAAAAAAAAAAAAAAAAAAAAAAAAAAAAqfexWDWk=
+  </data>
+ </layer>
+ <layer name="1" width="100" height="100">
+  <properties>
+   <property name="z" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt102KwkAQBtDkEnoXr+Mx1FEvoxdRjyLuhBkV3YglZBHE37TBCb4HHx1CFqGL6qayDAAAAAAAAACAphjmWTaKjPNP/8l3mUXmkUWkF3vfjwwiP+pQyfpGlg9CPW7V41FNrlGzdO/sD/VId68/7tXlmW95XdX+UI96VL0/9pHDxaoe6dzn/0vKfT6JGWNazBmbyC6yLXJ+zs0gLynv4eV6LFJ+tyqt9ro+5mq+TfksStHVL0DD/Eb+Ip04v1qRtnMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABooBMZOKwB
+  </data>
+ </layer>
+ <layer name="1 - Detail A" width="100" height="100">
+  <properties>
+   <property name="z" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztztEJABAYhVH7b6hsoGwg5EE2+KVz6tZ9/FICAAAAAAAAAAAAAOA3ZS1HR3C0tRodwdavP8IqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB43QRYmwWL
+  </data>
+ </layer>
+ <layer name="2" width="100" height="100">
+  <properties>
+   <property name="z" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt191NwzAUBtBkAHgHpmAdxuB/GVgEGASpTxU8AIUZuBGxGllOSeQCqjhH+uSmdaLKN7GdpgEAAAAAAAAAGHfZNs1V5Lr963+yOx4rzl307V3kPvIQOY2xP4ucRy7UYbZl5D2yKrRJ6beufc6uVartovAd45YV5+b16K6VapXqlvdhs23X47s+bFZTj4/s+K3QRz3mqalHvjaU1g/1WJuydzJf/Z5ufJ6a9fo61qfkoP3K4SDp+Kjfx6rHPFPu/drn4yZqc9vXp1s/0r4q7bPyNeY/mzLW3RiuRpIM3zmGn431PHPufe/VP69mLmL70lxUO7eceF6AHfMSeY0cx/y1F9k3jwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFDpE/aVVRA=
+  </data>
+ </layer>
+ <layer name="2 - Detail A" width="100" height="100">
+  <properties>
+   <property name="z" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+ <layer name="3" width="100" height="100">
+  <properties>
+   <property name="z" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt18ERgjAURdFkBvdCFbSmiDYDjagFaSe8AtybgXNm7j6Tv/hJKQAAAAAAAADQlrmWck+P+u+THMszvdI7XXL31zSlmzkAANCoc/1dnwbv2GYtmc1qPuycfzUAHMMnfdOYfd+lk70PAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAu7IBMfkKbg==
+  </data>
+ </layer>
+ <layer name="3 - Detail A" width="100" height="100">
+  <properties>
+   <property name="z" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+ <layer name="4" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIwDD8OwFMwokDnjbZvwgAAAAAAAAA+JFbbf09AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAMv84B/w==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="block" width="100" height="100">
+  <properties>
+   <property name="behavior" value="block"/>
+  </properties>
+ </objectgroup>
+ <objectgroup color="#55ff00" name="spawn" width="100" height="100">
+  <properties>
+   <property name="behavior" value="spawn"/>
+  </properties>
+ </objectgroup>
+ <objectgroup color="#55aaff" name="portal" width="100" height="100">
+  <properties>
+   <property name="behavior" value="portal"/>
+  </properties>
+ </objectgroup>
+</map>

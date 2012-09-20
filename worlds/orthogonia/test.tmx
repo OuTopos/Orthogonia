@@ -102,7 +102,7 @@
    eJzt2NENgjAUBdAyhou4j2EURZwEJxLX4fklHxhNDDzQc5L704/mJk2btqUA/I99ld0AAOB31NkFYEWOkVN2CdiYW6R/k3tau+1oIudIG7l8Mc/hwzEAmNOumr4DvBpnGV153t0ea3DNrQOLG++B8VnkbwxYC+93AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID5DEm9GPk=
   </data>
  </layer>
- <layer name="4" width="100" height="100" visible="0">
+ <layer name="4" width="100" height="100">
   <properties>
    <property name="z" value="4"/>
   </properties>
@@ -110,7 +110,7 @@
    eJzt181qwkAUBtDZ+dBV26ewbsXXaLUr7cKfPlJvFoE4BBU0majnwLfIBMIlH4GblG4zG6X0ObrxIdzNXB+DsogulvoAALi7VWR9IT+lhntBm8hX5DuybUl177fYdM/rLTJuOa/6yN9/3ok++lP3kfdQX1ffjT76c4gcL+Sv2HSPYxKZRt4jH2VHYUCu2c/aQjfyfeDa0A19DEuzj3063QN2Z87pRrOPfC+udzf7WX/O9UH/mv8vvgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAo4x+tqmSK
   </data>
  </layer>
- <layer name="5" width="100" height="100" visible="0">
+ <layer name="5" width="100" height="100">
   <properties>
    <property name="z" value="5"/>
   </properties>
@@ -118,22 +118,7 @@
    eJzt2TsOgkAUBVA27WczllaWVsbKoAW6KYeIhhCNSEQeck5ym4GQl7mZacgyvuFQJa9ySjl/mOPPp/4Pzb0u97HZR97hu4dvDTghZReXxlqR3fayqJ7lT95pQx/t3c/Cq30uWrzzjj5i0Ucs+ohFH7HoIxZ9xKKPWPQRS9nHLGWeskhZDjvO5DkfsegjFn3EMqY+VkMP8ANj6mM99AATtEvZDz0ED/f/OaVNLXWv1unXtpY26/DvutxD7q7+dLmH3F0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIzBFbeyQV8=
   </data>
  </layer>
- <objectgroup color="#55aaff" name="portals" width="100" height="100" visible="0">
-  <properties>
-   <property name="function" value="portal"/>
-  </properties>
-  <object name="North passage to the forest" type="portal" x="224" y="0" width="32" height="32">
-   <properties>
-    <property name="map" value="forest"/>
-    <property name="x" value="10"/>
-    <property name="y" value="10"/>
-    <property name="z" value="1"/>
-   </properties>
-  </object>
-  <object x="544" y="128" width="32" height="32"/>
-  <object x="1344" y="640" width="32" height="32"/>
- </objectgroup>
- <objectgroup color="#ff0000" name="block" width="100" height="100" visible="0">
+ <objectgroup color="#ff0000" name="block" width="100" height="100">
   <properties>
    <property name="behavior" value="block"/>
   </properties>
@@ -198,5 +183,24 @@
   <object x="1472" y="96" width="96" height="32"/>
   <object x="1472" y="128" width="64" height="32"/>
   <object x="1696" y="192" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#55ff00" name="spawn" width="100" height="100">
+  <properties>
+   <property name="behavior" value="spawn"/>
+  </properties>
+  <object name="tats_house_door" x="544" y="160" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#55aaff" name="portal" width="100" height="100">
+  <properties>
+   <property name="behavior" value="portal"/>
+  </properties>
+  <object name="tats_house_door" x="544" y="128" width="32" height="48">
+   <properties>
+    <property name="map" value="house1"/>
+    <property name="spawn" value="door"/>
+    <property name="world" value="orthogonia"/>
+   </properties>
+  </object>
+  <object x="1344" y="640" width="32" height="32"/>
  </objectgroup>
 </map>
