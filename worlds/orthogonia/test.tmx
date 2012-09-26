@@ -43,7 +43,7 @@
    <property name="z" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1LEKwjAQgOG7LZNr+4wddFNx0D66DaSIg4OLCfJ9UHJj6M8lAuB/HUvEqfS+Bbvz1mLRYxi1x02PYew9lvZu1fmqTzf37d8/2ndp56oHMIhDRszZ+xZ8MmnTTd2Nkq9zbjO/V/J9ntJujMA+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfOcJFiEJ1A==
+   eJzt1LEKwjAQBuALOGRyk/YZO+im4lB9dBuIiKiDSxPk+yDckenIzyUC4H/tc8Qhv9/vNuvPQsRxyWL6kAdtlDwu8ujGI4+p/lulP8unmXl5+2s9p1pv8gA6sU0RY2o9Bd8Msmmm7EZOzzrWnvXl9NoPyW70wD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD85g7ckwnt
   </data>
  </layer>
  <layer name="1 - A" width="100" height="100">
@@ -51,7 +51,7 @@
    <property name="z" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2UtOwzAQgGFHrVQkXr1AWSKxYsuGFUgs4RQUyjOkZQcIrsDzgsAVWDJRHTEYO0kJRU37f9IoIbajdCauk2KMMXOmumZg/7RhzNkIsS9xkRPdnD5p27lE3zln3fk+gj42HxiX1mFddew0Rq9Hls8jiWMVJ/a8sWwTu+/26U1JPZo5bYuB46GPuSENrWi4v1qhHqd2HnTt8UNVl6xePc9cSdT4utZDC937RW2ZJanFjuSgLdvlqFo9Dm3O3faBqlfeXJmGehRpm+Gc8c2pZTsv9iQHuxKbFeeHu67o9cH93uqpPu6cqSN97+tcp7nvSFxH3/t/SFy15Hhr+PeNbLekz3b0tU0jbvjXXZ1j3/3vjkvUnDlu/JwL2VyJ7TkuVUwjXa8Ftd/5xblilWNf3vs2Bmpfj/NFovJ/MCX1uJW48xzXHylv7c9rQ3mhPBat36FxNb4lJ958INy2lFuHMs9jGE3ZnOq5Qh2qSXPp3ttZftPcruSMTcZyRShLP1v1PQsFa0d1o+TwXuJhXBeCb3x1Kfq+uhjTtcyqoneGsmvzq8RbQbz/8hpnyaPEk8SzxIv5+e4Xet51I7Zj9DtlbM+XnYe1ZbLw/j4ZmBfA31qL/M8AoeP4P692Sw0wq/T7SzYPQr+N8Q76P0L/D/vrMUAdxMVdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgFyfR2SJGw==
+   eJzt2TtOw0AQgOG1ghSk8LpAKJGoaGmoQKKEUxASnsZABwiuwPNSlHS0gStQMlbWYlh27QTziJP/k0Y29q6VzHiytjDGmElT3kRgf79mzMEAsSVxlBOtnDHpuUOJY+eaVef7CvpYIzAvrcOSGtisDV6PLJ87Ersq9ux1Y9kmdt8d0xmRekzknJsOHA99zWU5UY96+wsl6rFv+6Blj7dVXbJ6dTy9kqj5Va2HFrr3i85lZqQW65KDOdnORuXq0bY5d8+fqHrl9coo1KPInOn1jK+nZm1fbEoONiRWSvaHu67o9cH93eqoMW7PVJG+93Wu09w3Jc6jz+PfJM7qcrze+/tCtqsyZi362KYR1/zrrs6x7/535yWqZ3ZrX3sh65XYXuNUxSjS9ZpS+81vXCtWOfbl/djGidrX83yRqPxvj0g9LiWuPMf1V8pb+/POoX+hPBat36F5Fb4lh14jEO65lFuHfp7HMJh+c6p7hTqUk+bSvbez/Ka5nc+Zm0g8s3D8G/1slT33PKp6sHaUN0gOryVunGNP9Mev8NWl6Pfq6Jc+y7gqurX7XZu7Ei8F8frNzzhObiXuJO4lHszXd7/Q864bsZ2j3ylje73sOqwtw4VlZjjQF8DPWoz8zwCh4/g7XbulBhhX+v0l64MkMJZ30L8R+n/YT88BqiAuHgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkegfZBIul
   </data>
  </layer>
  <layer name="1 - B" width="100" height="100">
@@ -67,7 +67,7 @@
    <property name="z" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6Abyv7VjKGbkIAEAPisa3sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtwzhCAA3
+   eJztzkENADAIBLAjmaX5/0wYMkZCq6AJALDVO8mt3wsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACYpQGzkAD/
   </data>
  </layer>
  <layer name="2" width="100" height="100">
@@ -78,12 +78,20 @@
    eJzt2V0KgkAUBtDpyRXUe+uoDVX0GFFb6HeD1VYaSMGHpqhoLD0HPmYYRS4MildDAIDv6CfWF0UI8+I2X8Zx3AthVKaak1dqr/jcKmbddBEAtMbgwbFZtirg921itk0X0XGPnlfTbFXwilPM+UkujVX3P3Yx+5hDzPGD60zKsd5TThLnAsC3DHv33wFS6+RzKkd7QFfV+5fqPkh9G9OD5vHO/zD/0Ggr/TsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtMsVGMwekw==
   </data>
  </layer>
- <layer name="2 - Detail" width="100" height="100">
+ <layer name="2 - Detail A" width="100" height="100">
   <properties>
    <property name="z" value="2"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzqEBACAMxMCvYhqYkOERdQwA5k5FJgGAt2Ylq7r3+PsCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcDuohADh
+  </data>
+ </layer>
+ <layer name="2 - Detail B" width="100" height="100">
+  <properties>
+   <property name="z" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0aENACAQBMEX9F8UoQbqwZK8QnFiJtkKturNHD3+8SGPH1n8yLKuH9sXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAINQB7nsLsQ==
   </data>
  </layer>
  <layer name="3" width="100" height="100">
@@ -94,12 +102,20 @@
    eJzt2DsKAjEUBdBYuQaXJ27CUvBb+CvUXgTdghtRt+OzcgpFcZyJwjlwmxThwSVDJil9bt5MaRqZRRbNEhvxFZvoYBVZR476yK7Yx1If2W2jg26kF9npAwDgKzq5B4Af0o8Mcg8Bf+YUOb/IJdt0/2MYGUXGkUmJfdpvrgFAlVqNx3eAZ+vUY5/ud7dbB4e840Dtimeg+C3yNgb8Cv/vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADVuQLYTyJq
   </data>
  </layer>
- <layer name="3 - Detail" width="100" height="100">
+ <layer name="3 - Detail A" width="100" height="100">
   <properties>
    <property name="z" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2NENgjAUBdAyhou4j2EURZwEJxLX4fklHxhNDDzQc5L704/mJk2btqUA/I99ld0AAOB31NkFYEWOkVN2CdiYW6R/k3tau+1oIudIG7l8Mc/hwzEAmNOumr4DvBpnGV153t0ea3DNrQOLG++B8VnkbwxYC+93AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID5DEm9GPk=
+   eJztzsEJADAIBLB7uD/UiR3DgskESQBueJV0bS8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+N0AXq8BLA==
+  </data>
+ </layer>
+ <layer name="3 - Detail B" width="100" height="100">
+  <properties>
+   <property name="z" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6Bbyv7RjKGbkIAE4I+u7QEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1w0fggA4
   </data>
  </layer>
  <layer name="4" width="100" height="100">
@@ -118,7 +134,7 @@
    eJzt2TsOgkAUBVA27WczllaWVsbKoAW6KYeIhhCNSEQeck5ym4GQl7mZacgyvuFQJa9ySjl/mOPPp/4Pzb0u97HZR97hu4dvDTghZReXxlqR3fayqJ7lT95pQx/t3c/Cq30uWrzzjj5i0Ucs+ohFH7HoIxZ9xKKPWPQRS9nHLGWeskhZDjvO5DkfsegjFn3EMqY+VkMP8ANj6mM99AATtEvZDz0ED/f/OaVNLXWv1unXtpY26/DvutxD7q7+dLmH3F0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIzBFbeyQV8=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="block" width="100" height="100">
+ <objectgroup color="#ff0000" name="block" width="100" height="100" visible="0">
   <properties>
    <property name="behavior" value="block"/>
   </properties>
@@ -184,13 +200,13 @@
   <object x="1472" y="128" width="64" height="32"/>
   <object x="1696" y="192" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#55ff00" name="spawn" width="100" height="100">
+ <objectgroup color="#55ff00" name="spawn" width="100" height="100" visible="0">
   <properties>
    <property name="behavior" value="spawn"/>
   </properties>
   <object name="tats_house_door" x="544" y="160" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#55aaff" name="portal" width="100" height="100">
+ <objectgroup color="#55aaff" name="portal" width="100" height="100" visible="0">
   <properties>
    <property name="behavior" value="portal"/>
   </properties>

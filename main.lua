@@ -102,7 +102,7 @@ function love.keypressed(key)
 		map.unload()
 	end
 	if key == "q" then
-		map.load("house1", "door")
+		map.load("arena")
 	end
 	if key == "w" then
 		map.load("test", "tats_house_door")
