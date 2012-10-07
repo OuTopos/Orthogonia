@@ -4,13 +4,15 @@ entities.remove = {}
 entities.refresh = false
 
 -- All the types of entities
-require	"entities_player_free"
+require	"entities_player_physics"
 require	"entities_eyeball"
 require	"entities_snake"
+require	"entities_coin"
 
-function entities.new(type, view, control, x, y)
-	local entity = _G["entities_"..type].new(view, control, x, y)
+function entities.new(type, x, y, z)
+	local entity = _G["entities_"..type].new(x, y, z)
 	table.insert(entities.data, entity)
+	buffer:reset()
 end
 
 function entities.reset()
@@ -19,6 +21,10 @@ function entities.reset()
 			entities.data[i].destroy()
 		end
 	end
+	entities.data = {}
+end
+
+function entities.destroy()
 	entities.data = {}
 end
 

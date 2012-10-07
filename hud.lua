@@ -13,17 +13,13 @@ function hud.draw()
 			tileheight = map.loaded.tileheight
 		end
 
-		-- Draw collision
-		collision.draw()
+		physics.draw()
 
 		-- Entities
 		for i = 1, #entities.data do
 			love.graphics.setColor(255, 255, 255, 102)
-			love.graphics.rectangle("fill", entities.data[i].getX(), entities.data[i].getY(), 32, 32)
-			if entities.data[i].collision then
-				love.graphics.setColor(255, 0, 0, 153)
-				love.graphics.rectangle("fill", entities.data[i].getCollision())
-			end
+		--	love.graphics.rectangle("fill", entities.data[i].getX(), entities.data[i].getY(), 32, 32)
+
 			love.graphics.setColor(0, 255, 255, 255)
 			love.graphics.print(i, entities.data[i].getX(), entities.data[i].getY())
 		end
@@ -39,6 +35,7 @@ function hud.draw()
 		--love.graphics.print("Tile: "..math.floor( entities.data[entities.viewing].getX() / tilewidth + 0.5 )..":"..math.floor( entities.data[entities.viewing].getY() / tileheight + 0.5 ), camera.x + 2, camera.y + 22)
 		love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 32)
 		love.graphics.print("Buffer: "..buffer.length, camera.x + 2, camera.y + 42)
+		love.graphics.print("Physics: "..physics.world:getBodyCount(), camera.x + 2, camera.y + 52)
 
 		if love.joystick.getNumJoysticks() > 0 then
 			xisDir1, axisDir2, axisDirN = love.joystick.getAxes( 1 )

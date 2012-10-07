@@ -74,33 +74,23 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" name="block" width="10" height="8">
-  <properties>
-   <property name="behavior" value="block"/>
-  </properties>
   <object x="0" y="0" width="32" height="288"/>
   <object x="32" y="0" width="256" height="96"/>
   <object x="288" y="0" width="32" height="288"/>
   <object x="224" y="224" width="64" height="64"/>
   <object x="32" y="224" width="128" height="64"/>
   <object x="224" y="192" width="64" height="32"/>
-  <object x="256" y="136" width="32" height="24"/>
+  <object x="256" y="128" width="32" height="32"/>
   <object x="32" y="192" width="64" height="32"/>
   <object x="96" y="112" width="32" height="16"/>
   <object x="128" y="112" width="32" height="48"/>
-  <object x="224" y="96" width="64" height="40"/>
-  <object x="208" y="96" width="16" height="16"/>
+  <object x="224" y="96" width="64" height="32"/>
  </objectgroup>
- <objectgroup color="#55ff00" name="spawn" width="10" height="8">
-  <properties>
-   <property name="behavior" value="spawn"/>
-  </properties>
+ <objectgroup color="#55ff00" name="spawns" width="10" height="8">
   <object name="door" x="176" y="224" width="32" height="32"/>
   <object name="bedside" x="96" y="160" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#55aaff" name="portal" width="10" height="8">
-  <properties>
-   <property name="behavior" value="portal"/>
-  </properties>
+ <objectgroup color="#55aaff" name="portals" width="10" height="8">
   <object name="door" x="160" y="256" width="64" height="32">
    <properties>
     <property name="map" value="test"/>

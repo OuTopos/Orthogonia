@@ -1,7 +1,3 @@
-TIMESCALE = 1
-ACTIVE_PLAYER = 1
-
-
 require "screen"
 require "camera"
 require "buffer"
@@ -9,17 +5,10 @@ require "map"
 require "gui"
 require "hud"
 require "env"
---require "players"
+require "physics"
 
-require "collision"
 require "entities"
-require "client"
-
--- Particle test
---require "weather"
-
--- Libraries
---0local easing = require("lib/easing/easing")
+--require "client"
 
 function love.load()
 	love.graphics.setDefaultImageFilter( "nearest", "nearest" )
@@ -35,48 +24,9 @@ function love.load()
 	font = love.graphics.newImageFont(imagefont," abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"")
 	love.graphics.setFont(font)
 
-
-
-
 	camera:scale(screen.scale)
-
 	gui.load()
-
-
-	--ACTIVE_PLAYER = 1 --math.random(99999)
-	--players.new("BODY_skeleton", ACTIVE_PLAYER)
-	--players.new("soldier", 2)
-	--players.new("princess", 3)
-	--players.new("hollow_woman", 4)
-
-	--entities.new("player", true, true)
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("eyeball")
-	--entities.new("snake")
-
-	--collision.new(128, 128, 64, 64)
-	--collision.new(224, 128, 32, 32)
-
-	--collision.new(96, 224, 64, 32)
-	--collision.new(128, 96, 32, 32)
-
-	map.load("house1", "bedside")
+	map.load("test")
 end
 
 function love.keypressed(key)
@@ -102,13 +52,22 @@ function love.keypressed(key)
 		map.unload()
 	end
 	if key == "q" then
-		map.load("arena")
+		map.load("test")
 	end
 	if key == "w" then
-		map.load("test", "tats_house_door")
+		map.load("house1", "bedside")
 	end
 	if key == "e" then
-		map.load("cubicles", nil, "isometropolis")
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 	end
 	if key == "n" then
 		poop = #entities.data
@@ -134,17 +93,11 @@ function love.keypressed(key)
 end
 
 function love.update(dt)
-	dt = dt * TIMESCALE
-
+	physics.update(dt)
 	entities.update(dt)
-	collision.update(dt)
-	-- Update the camera according to the active players position
-	--camera:center(entities.data[entities.viewing].getX(), entities.data[entities.viewing].getY())
-
-	-- Update the map according to the active players position
-	map.update(camera.x, camera.y)
-
 	env.update(dt)
+
+	map.update(camera.x, camera.y)
 end
 
 function love.draw()

@@ -235,9 +235,7 @@ return {
       name = "block",
       visible = true,
       opacity = 1,
-      properties = {
-        ["behavior"] = "block"
-      },
+      properties = {},
       objects = {
         {
           name = "",
@@ -297,9 +295,9 @@ return {
           name = "",
           type = "",
           x = 256,
-          y = 136,
+          y = 128,
           width = 32,
-          height = 24,
+          height = 32,
           properties = {}
         },
         {
@@ -335,28 +333,17 @@ return {
           x = 224,
           y = 96,
           width = 64,
-          height = 40,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 208,
-          y = 96,
-          width = 16,
-          height = 16,
+          height = 32,
           properties = {}
         }
       }
     },
     {
       type = "objectgroup",
-      name = "spawn",
+      name = "spawns",
       visible = true,
       opacity = 1,
-      properties = {
-        ["behavior"] = "spawn"
-      },
+      properties = {},
       objects = {
         {
           name = "door",
@@ -380,12 +367,10 @@ return {
     },
     {
       type = "objectgroup",
-      name = "portal",
+      name = "portals",
       visible = true,
       opacity = 1,
-      properties = {
-        ["behavior"] = "portal"
-      },
+      properties = {},
       objects = {
         {
           name = "door",

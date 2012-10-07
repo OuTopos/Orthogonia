@@ -1639,9 +1639,7 @@ return {
       name = "block",
       visible = true,
       opacity = 1,
-      properties = {
-        ["behavior"] = "block"
-      },
+      properties = {},
       objects = {
         {
           name = "",
@@ -1740,24 +1738,6 @@ return {
           y = 448,
           width = 32,
           height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 384,
-          y = 384,
-          width = 64,
-          height = 64,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 32,
-          y = 480,
-          width = 64,
-          height = 64,
           properties = {}
         },
         {
@@ -2027,7 +2007,7 @@ return {
           x = 576,
           y = 64,
           width = 32,
-          height = 96,
+          height = 128,
           properties = {}
         },
         {
@@ -2051,10 +2031,10 @@ return {
         {
           name = "",
           type = "",
-          x = 576,
-          y = 160,
-          width = 192,
-          height = 32,
+          x = 608,
+          y = 176,
+          width = 160,
+          height = 16,
           properties = {}
         },
         {
@@ -2191,17 +2171,47 @@ return {
           width = 32,
           height = 32,
           properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 64,
+          y = 480,
+          width = 0,
+          height = 0,
+          polygon = {
+            { x = 0, y = 0 },
+            { x = 32, y = 32 },
+            { x = 0, y = 64 },
+            { x = -32, y = 32 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 384,
+          y = 416,
+          width = 0,
+          height = 0,
+          polygon = {
+            { x = 0, y = 0 },
+            { x = 0, y = 32 },
+            { x = 32, y = 32 },
+            { x = 64, y = 32 },
+            { x = 64, y = 0 },
+            { x = 32, y = -32 }
+          },
+          properties = {}
         }
       }
     },
     {
       type = "objectgroup",
-      name = "spawn",
+      name = "spawns",
       visible = true,
       opacity = 1,
-      properties = {
-        ["behavior"] = "spawn"
-      },
+      properties = {},
       objects = {
         {
           name = "tats_house_door",
@@ -2216,12 +2226,10 @@ return {
     },
     {
       type = "objectgroup",
-      name = "portal",
+      name = "portals",
       visible = true,
       opacity = 1,
-      properties = {
-        ["behavior"] = "portal"
-      },
+      properties = {},
       objects = {
         {
           name = "tats_house_door",
@@ -2229,7 +2237,7 @@ return {
           x = 544,
           y = 128,
           width = 32,
-          height = 48,
+          height = 32,
           properties = {
             ["map"] = "house1",
             ["spawn"] = "door",
@@ -2241,6 +2249,33 @@ return {
           type = "",
           x = 1344,
           y = 640,
+          width = 32,
+          height = 32,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "entities",
+      visible = true,
+      opacity = 1,
+      properties = {},
+      objects = {
+        {
+          name = "",
+          type = "barrel",
+          x = 352,
+          y = 256,
+          width = 32,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "eyeball",
+          x = 192,
+          y = 480,
           width = 32,
           height = 32,
           properties = {}

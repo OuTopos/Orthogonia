@@ -13,29 +13,86 @@ function map.load(name, spawn, world)
 	-- Loading map.
 	map.loaded = require("/worlds/"..world.."/"..name)
 	if map.loaded.orientation == "orthogonal" then
+		-- Physics
+		physics.setWorld(map.loaded.width, map.loaded.height, map.loaded.tilewidth, false)
+
 		map.loaded.spawns = {}
 		-- Loading objects layers.
 		for i,layer in ipairs(map.loaded.layers) do
-			-- Block, add to collision.
-			if layer.type == "objectgroup" and layer.properties.behavior == "block" then
-				for i,object in ipairs(layer.objects) do
-					collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior)
-				end
-			end
-			-- Portal, add to collision.
-			if layer.type == "objectgroup" and layer.properties.behavior == "portal" then
-				for i,object in ipairs(layer.objects) do
-					local data = {map = object.properties.map, spawn = object.properties.spawn, world = object.properties.world}
-					collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior, data)
-				end
-			end
-			-- Spawn
-			if layer.type == "objectgroup" and layer.properties.behavior == "spawn" then
-				for i,object in ipairs(layer.objects) do
-					map.loaded.spawns[object.name] = object --{x = object.x, y = object.y, width = object.width, height = object.height
+			if layer.type == "objectgroup" then
+				if layer.name == "block" then
+					-- Block add to physics.
+					for i,object in ipairs(layer.objects) do
+						if object.polygon then
+							--Polygon
+							local vertices = {}
+							for i,vertix in ipairs(object.polygon) do
+								table.insert(vertices, vertix.x)
+								table.insert(vertices, vertix.y)
+							end
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newPolygonShape(unpack(vertices)))
+						elseif object.polyline then
+							--Polylinelocal
+							vertices = {}
+							for i,vertix in ipairs(object.polyline) do
+								table.insert(vertices, vertix.x)
+								table.insert(vertices, vertix.y)
+								print(vertix.x..":"..vertix.y)
+							end
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newChainShape(false, unpack(vertices)))
+
+						elseif object.gid then
+							--Tile
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y-map.loaded.tileheight, "static"), love.physics.newRectangleShape(map.loaded.tilewidth/2, map.loaded.tileheight/2, map.loaded.tilewidth, map.loaded.tileheight))
+						else
+							--Rectangle
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height))
+						end
+					end
+				elseif layer.name == "portals" then
+					-- Portal, add to collision.
+					for i,object in ipairs(layer.objects) do
+						if object.polygon then
+							--Polygon
+							local vertices = {}
+							for i,vertix in ipairs(object.polygon) do
+								table.insert(vertices, vertix.x)
+								table.insert(vertices, vertix.y)
+							end
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newPolygonShape(unpack(vertices)), true)
+						elseif object.polyline then
+							--Polylinelocal
+							vertices = {}
+							for i,vertix in ipairs(object.polyline) do
+								table.insert(vertices, vertix.x)
+								table.insert(vertices, vertix.y)
+								print(vertix.x..":"..vertix.y)
+							end
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newChainShape(false, unpack(vertices)), true)
+
+						elseif object.gid then
+							--Tile
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y-map.loaded.tileheight, "static"), love.physics.newRectangleShape(map.loaded.tilewidth/2, map.loaded.tileheight/2, map.loaded.tilewidth, map.loaded.tileheight), true)
+						else
+							--Rectangle
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height), true)
+						end
+
+
+						local data = {map = object.properties.map, spawn = object.properties.spawn, world = object.properties.world}
+						--collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior, data)
+					end
+				elseif layer.name == "spawns" then
+					-- Spawn
+					for i,object in ipairs(layer.objects) do
+						map.loaded.spawns[object.name] = object
+					end
 				end
 			end
 		end
+
+		-- Map bounderies
+		physics.newObject(love.physics.newBody(physics.world, 0, 0, "static"), love.physics.newChainShape(true, 0, 0, map.loaded.width * map.loaded.tilewidth, 0, map.loaded.width * map.loaded.tilewidth, map.loaded.height * map.loaded.tileheight, 0, map.loaded.height * map.loaded.tileheight))
 
 		-- Loading tilesets
 		for i,tileset in ipairs(map.loaded.tilesets) do
@@ -51,9 +108,9 @@ function map.load(name, spawn, world)
 
 		-- Spawning player
 		if map.loaded.spawns[spawn] then
-			entities.new("player", true, true, map.loaded.spawns[spawn].x, map.loaded.spawns[spawn].y)
+			entities.new("player", map.loaded.spawns[spawn].x, map.loaded.spawns[spawn].y, 32)
 		else
-			entities.new("player", true, true, 0, 0)
+			entities.new("player", 64, 64, 32)
 		end
 	elseif map.loaded.orientation == "isometric" then
 		print("ios")
@@ -61,7 +118,7 @@ function map.load(name, spawn, world)
 			-- Block, add to collision.
 			if layer.type == "objectgroup" and layer.properties.behavior == "block" then
 				for i,object in ipairs(layer.objects) do
-					collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior)
+					--collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior)
 				end
 			end
 		end
@@ -78,9 +135,9 @@ end
 
 function map.unload()
 	map.loaded = nil
-	entities.reset()
-	collision.reset()
+	entities.destroy()
 	buffer:reset()
+	physics.destroy()
 end
 
 function map.findSheet(quad)
