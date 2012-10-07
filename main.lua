@@ -108,7 +108,7 @@ function love.keypressed(key)
 		map.load("test", "tats_house_door")
 	end
 	if key == "e" then
-		map.load("16")
+		map.load("cubicles", nil, "isometropolis")
 	end
 	if key == "n" then
 		poop = #entities.data

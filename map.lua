@@ -55,6 +55,21 @@ function map.load(name, spawn, world)
 		else
 			entities.new("player", true, true, 0, 0)
 		end
+	elseif map.loaded.orientation == "isometric" then
+		print("ios")
+		for i,layer in ipairs(map.loaded.layers) do
+			-- Block, add to collision.
+			if layer.type == "objectgroup" and layer.properties.behavior == "block" then
+				for i,object in ipairs(layer.objects) do
+					collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior)
+				end
+			end
+		end
+
+		-- Loading tilesets
+		for i,tileset in ipairs(map.loaded.tilesets) do
+			buffer:addSheet(string.match(tileset.image, "../../images/(.*).png"), tileset.tilewidth, tileset.tileheight)
+		end
 	else
 		print("Map is not compatible.")
 		map.unload()

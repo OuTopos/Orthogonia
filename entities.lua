@@ -4,7 +4,7 @@ entities.remove = {}
 entities.refresh = false
 
 -- All the types of entities
-require	"entities_player"
+require	"entities_player_free"
 require	"entities_eyeball"
 require	"entities_snake"
 

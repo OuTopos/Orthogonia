@@ -1,6 +1,8 @@
 hud = {}
 hud.enabled = false
 
+--open = love.joystick.open( 1 )
+--print(open)
 function hud.draw()
 	if hud.enabled then
 		-- Setting tilesizes
@@ -38,8 +40,11 @@ function hud.draw()
 		love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 32)
 		love.graphics.print("Buffer: "..buffer.length, camera.x + 2, camera.y + 42)
 
-		--love.graphics.print(players.list[ACTIVE_PLAYER].state, camera.x + 2, camera.y + 52)
-		--love.graphics.print("xvel: "..entities.data[entities.viewing].getXvel(), camera.x + 2, camera.y + 62)
-		--love.graphics.print("yvel: "..entities.data[entities.viewing].getYvel(), camera.x + 2, camera.y + 72)
+		if love.joystick.getNumJoysticks() > 0 then
+			xisDir1, axisDir2, axisDirN = love.joystick.getAxes( 1 )
+			love.graphics.print(xisDir1, camera.x + 2, camera.y + 52)
+			love.graphics.print(axisDir2, camera.x + 2, camera.y + 62)
+			love.graphics.print(love.joystick.getNumAxes(1), camera.x + 2, camera.y + 72)
+		end
 	end
 end	

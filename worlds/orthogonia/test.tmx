@@ -6,6 +6,11 @@
  </properties>
  <tileset firstgid="1" name="magecity" tilewidth="32" tileheight="32">
   <image source="../../images/magecity.png" width="256" height="1450"/>
+  <tile id="12">
+   <properties>
+    <property name="block" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="361" name="farming_fishing" tilewidth="32" tileheight="32">
   <image source="../../images/tilesets/farming/farming_fishing.png" width="640" height="640"/>
@@ -134,7 +139,7 @@
    eJzt2TsOgkAUBVA27WczllaWVsbKoAW6KYeIhhCNSEQeck5ym4GQl7mZacgyvuFQJa9ySjl/mOPPp/4Pzb0u97HZR97hu4dvDTghZReXxlqR3fayqJ7lT95pQx/t3c/Cq30uWrzzjj5i0Ucs+ohFH7HoIxZ9xKKPWPQRS9nHLGWeskhZDjvO5DkfsegjFn3EMqY+VkMP8ANj6mM99AATtEvZDz0ED/f/OaVNLXWv1unXtpY26/DvutxD7q7+dLmH3F0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIzBFbeyQV8=
   </data>
  </layer>
- <objectgroup color="#ff0000" name="block" width="100" height="100" visible="0">
+ <objectgroup color="#ff0000" name="block" width="100" height="100">
   <properties>
    <property name="behavior" value="block"/>
   </properties>
@@ -200,13 +205,13 @@
   <object x="1472" y="128" width="64" height="32"/>
   <object x="1696" y="192" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#55ff00" name="spawn" width="100" height="100" visible="0">
+ <objectgroup color="#55ff00" name="spawn" width="100" height="100">
   <properties>
    <property name="behavior" value="spawn"/>
   </properties>
   <object name="tats_house_door" x="544" y="160" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#55aaff" name="portal" width="100" height="100" visible="0">
+ <objectgroup color="#55aaff" name="portal" width="100" height="100">
   <properties>
    <property name="behavior" value="portal"/>
   </properties>
