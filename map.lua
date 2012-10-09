@@ -75,7 +75,7 @@ function map.load(name, spawn, world)
 							physics.newObject(love.physics.newBody(physics.world, object.x, object.y-map.loaded.tileheight, "static"), love.physics.newRectangleShape(map.loaded.tilewidth/2, map.loaded.tileheight/2, map.loaded.tilewidth, map.loaded.tileheight), true)
 						else
 							--Rectangle
-							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height), true)
+							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height), nil, true)
 						end
 
 
@@ -108,9 +108,9 @@ function map.load(name, spawn, world)
 
 		-- Spawning player
 		if map.loaded.spawns[spawn] then
-			entities.new("player", map.loaded.spawns[spawn].x, map.loaded.spawns[spawn].y, 32)
+			player = entities.new("player", map.loaded.spawns[spawn].x, map.loaded.spawns[spawn].y, 32)
 		else
-			entities.new("player", 64, 64, 32)
+			player = entities.new("player", 64, 64, 32)
 		end
 	elseif map.loaded.orientation == "isometric" then
 		print("ios")
@@ -135,9 +135,10 @@ end
 
 function map.unload()
 	map.loaded = nil
+	player = nil
 	entities.destroy()
-	buffer:reset()
 	physics.destroy()
+	buffer:reset()
 end
 
 function map.findSheet(quad)

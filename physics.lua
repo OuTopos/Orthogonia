@@ -3,19 +3,19 @@ physics.objects = {}
 
 
 function physics.setWorld(xg, yg, meter, sleep)
+	physics.destroy()
 	love.physics.setMeter(meter or 32)
-
-	physics.world = nil
 	physics.world = love.physics.newWorld(0, 0, sleep or false)
 end
 
-function physics.newObject(body, shape, sensor)
+function physics.newObject(body, shape, entity, sensor)
 	local object = {body = body, shape = shape}
-	object.fixture = love.physics.newFixture(object.body, object.shape, 5) 
-	table.insert(physics.objects, object)
+	object.fixture = love.physics.newFixture(object.body, object.shape, 5)
+	object.fixture:setUserData(entity)
 	if sensor then
 		object.fixture:setSensor(true)
 	end
+	table.insert(physics.objects, object)
 	return object
 end
 
@@ -36,11 +36,22 @@ end
 
 function physics.draw()
 	for i = 1, #physics.objects do
-		love.graphics.setColor(255, 0, 255, 204)
-		if physics.objects[i].fixture:isSensor() then
-			love.graphics.setColor(0, 255, 255, 102)
-		else
-			love.graphics.setColor(255, 0, 0, 102)
+		if physics.objects[i].body:getType() == "static" then
+			if physics.objects[i].fixture:isSensor() then
+				love.graphics.setColor(255, 0, 255, 102)
+			elseif physics.objects[i].fixture:getUserData() then
+				love.graphics.setColor(255, 255, 0, 102)
+			else
+				love.graphics.setColor(255, 0, 0, 102)
+			end
+		elseif physics.objects[i].body:getType() == "dynamic" then
+			if physics.objects[i].fixture:isSensor() then
+				love.graphics.setColor(0, 255, 255, 102)
+			elseif physics.objects[i].fixture:getUserData() then
+				love.graphics.setColor(0, 255, 0, 102)
+			else
+				love.graphics.setColor(0, 0, 255, 102)
+			end
 		end
 
 		if physics.objects[i].shape:getType() == "circle" then

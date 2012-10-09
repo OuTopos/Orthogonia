@@ -17,7 +17,7 @@ function entities_player.new(x, y, z)
 
 	-- SPRITES
 	--buffer:addSheet("tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", 64, 64)
-	buffer:addSheet("soldier", 64, 64)
+	buffer:addSheet("BODY_skeleton", 64, 64)
 	buffer:addSheet("HEAD_chain_armor_hood", 64, 64)
 	buffer:addSheet("HEAD_chain_armor_helmet", 64, 64)
 	buffer:addSheet("FEET_shoes_brown", 64, 64)
@@ -25,15 +25,15 @@ function entities_player.new(x, y, z)
 	local spriteset = buffer.spriteset(x-16, y-16, z, 16, 32)
 
 	--table.insert(spriteset.data, {sheet = "tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", quad = 14} )
-	table.insert(spriteset.data, {sheet = "soldier", quad = 14} )
+	table.insert(spriteset.data, {sheet = "BODY_skeleton", quad = 14} )
 	table.insert(spriteset.data, {sheet = "HEAD_chain_armor_hood", quad = 14} )
 	--table.insert(spriteset.data, {sheet = "HEAD_chain_armor_helmet", quad = 14} )
 	table.insert(spriteset.data, {sheet = "FEET_shoes_brown", quad = 14} )
 
 
 	-- Physics
-	local hitbox = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newRectangleShape(0, -8, 28, 48), true)
-	local object = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14))
+	local hitbox = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newRectangleShape(0, -8, 28, 48), self, true)
+	local object = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14), self)
 	object.body:setLinearDamping( 8 )
 	--physics.body:setFixedRotation( true )
 	object.fixture:setRestitution( 0.4 )

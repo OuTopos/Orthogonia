@@ -13,6 +13,7 @@ function entities.new(type, x, y, z)
 	local entity = _G["entities_"..type].new(x, y, z)
 	table.insert(entities.data, entity)
 	buffer:reset()
+	return entity
 end
 
 function entities.reset()

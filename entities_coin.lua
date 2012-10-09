@@ -4,13 +4,13 @@ function entities_coin.new(x, y, z)
 	local self = {}
 	local remove = false
 	
-	buffer:addSheet("tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", 32, 32)
 
+	buffer:addSheet("tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", 32, 32)
 	local spriteset = buffer.spriteset(x-16, y-16, z, 0, 0)
 	table.insert(spriteset.data, {sheet = "tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", quad = 1} )
 
-	-- Physics
-	local collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(8))
+	-- Physics/Collision
+	local collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(8), self)
 	collision.body:setLinearDamping( 0.1 )
 	collision.fixture:setRestitution( 0.9 )
 
@@ -23,7 +23,6 @@ function entities_coin.new(x, y, z)
 
 		self.animate(1, 8, 0.1, dt)
 	end
-
 
 	local animation = {}
 	animation.quad = 1

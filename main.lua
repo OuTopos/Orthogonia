@@ -11,6 +11,8 @@ require "entities"
 --require "client"
 
 function love.load()
+	player = nil
+
 	love.graphics.setDefaultImageFilter( "nearest", "nearest" )
 	--love.graphics.setMode(screen.width, screen.height, false, true, 0) --set the window dimensions to 650 by 650 with no fullscreen, vsync on, and no antialiasing
 
@@ -58,16 +60,17 @@ function love.keypressed(key)
 		map.load("house1", "bedside")
 	end
 	if key == "e" then
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("eyeball", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 	end
 	if key == "n" then
 		poop = #entities.data

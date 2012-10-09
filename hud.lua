@@ -31,8 +31,10 @@ function hud.draw()
 		-- Text
 		love.graphics.setColor(0, 255, 0, 255)
 		love.graphics.print("FPS: "..love.timer.getFPS(), camera.x + 2, camera.y + 2)
-		--love.graphics.print("Cord: "..entities.data[entities.viewing].getX()..":"..entities.data[entities.viewing].getY(), camera.x + 2, camera.y + 12)
-		--love.graphics.print("Tile: "..math.floor( entities.data[entities.viewing].getX() / tilewidth + 0.5 )..":"..math.floor( entities.data[entities.viewing].getY() / tileheight + 0.5 ), camera.x + 2, camera.y + 22)
+		if player then
+			love.graphics.print("Cord: "..player.getX()..":"..player.getY(), camera.x + 2, camera.y + 12)
+			love.graphics.print("Tile: "..math.floor( player.getX() / tilewidth + 0.5 )..":"..math.floor( player.getY() / tileheight + 0.5 ), camera.x + 2, camera.y + 22)
+		end
 		love.graphics.print("View: "..map.view.x..":"..map.view.y, camera.x + 2, camera.y + 32)
 		love.graphics.print("Buffer: "..buffer.length, camera.x + 2, camera.y + 42)
 		love.graphics.print("Physics: "..physics.world:getBodyCount(), camera.x + 2, camera.y + 52)

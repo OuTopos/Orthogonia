@@ -1743,33 +1743,6 @@ return {
         {
           name = "",
           type = "",
-          x = 192,
-          y = 608,
-          width = 512,
-          height = 64,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 0,
-          y = 608,
-          width = 128,
-          height = 64,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 640,
-          y = 672,
-          width = 64,
-          height = 160,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
           x = 1120,
           y = 768,
           width = 64,
@@ -1873,42 +1846,6 @@ return {
           y = 640,
           width = 128,
           height = 128,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 1312,
-          y = 1056,
-          width = 96,
-          height = 96,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 1024,
-          y = 1216,
-          width = 288,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 1408,
-          y = 1216,
-          width = 224,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 1024,
-          y = 1248,
-          width = 608,
-          height = 32,
           properties = {}
         },
         {
@@ -2201,6 +2138,98 @@ return {
             { x = 64, y = 32 },
             { x = 64, y = 0 },
             { x = 32, y = -32 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 640,
+          y = 832,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 0, y = -160 },
+            { x = -448, y = -160 },
+            { x = -448, y = -224 },
+            { x = 64, y = -224 },
+            { x = 64, y = 0 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 0,
+          y = 608,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 128, y = 0 },
+            { x = 128, y = 64 },
+            { x = 0, y = 64 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 1024,
+          y = 1216,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 288, y = 0 },
+            { x = 288, y = 32 },
+            { x = 384, y = 32 },
+            { x = 384, y = 0 },
+            { x = 608, y = 0 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 1408,
+          y = 1152,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = -96, y = 0 },
+            { x = -96, y = -96 },
+            { x = 0, y = -96 },
+            { x = 0, y = 0 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 544,
+          y = 384,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 32, y = -32 }
+          },
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 544,
+          y = 448,
+          width = 0,
+          height = 0,
+          polygon = {
+            { x = 0, y = 0 },
+            { x = 32, y = -32 },
+            { x = 32, y = 0 }
           },
           properties = {}
         }
