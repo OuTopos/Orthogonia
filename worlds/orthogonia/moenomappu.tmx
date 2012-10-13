@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="env" value="something"/>
+  <property name="name" value="The Mage City"/>
+ </properties>
+ <tileset firstgid="1" name="asian" tilewidth="32" tileheight="32">
+  <image source="../../images/tilesets/LPC/asian.png" width="288" height="768"/>
+ </tileset>
+ <tileset firstgid="217" name="magecity" tilewidth="32" tileheight="32">
+  <image source="../../images/tilesets/lorestrome/magecity.png" width="256" height="1450"/>
+ </tileset>
+ <layer name="0" width="50" height="50">
+  <properties>
+   <property name="priority" value="0"/>
+   <property name="z" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz7EJgEAQRNHda8RAxP5zc23hujERjEQEYTl4wWPSPz0iOgDAi6nVN/xhHfTHnhFLu83XHlnf9sWWz6rbAAAAAAAAgPGd/vFB1A==
+  </data>
+ </layer>
+ <layer name="1" width="50" height="50">
+  <properties>
+   <property name="z" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz0EKgzAURdGf9Xcr1mrnrasRugy/4MSBkEmI0HPgjhLCSwQAUGvIntmYvTq+0cKj8t7adEUbnxLxPdot5Xxe+/c7+PUewKUpm7N37yEAAAAAAADwxzaaZg1f
+  </data>
+ </layer>
+ <layer name="2" width="50" height="50">
+  <properties>
+   <property name="z" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz8sJgEAMQMFs67bivwC1PSN4sYB1UWbgnQIhiQCA+vpsyMZsarijhq71ARVtJWK/uxzlOf/z77xnzpZsbX0IAAAAAAAA8HknRlkK/Q==
+  </data>
+ </layer>
+ <layer name="3" width="50" height="50">
+  <properties>
+   <property name="z" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzrsNgDAQRMFz/x3wbwDTIheSOjoLzUgvXW0EADNbsjXbsr1wgzF3i+ifnlb9iD86sjO7in8AAAAAAAAAzOIFh7MKJQ==
+  </data>
+ </layer>
+ <layer name="4" width="50" height="50">
+  <properties>
+   <property name="z" value="4"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz7EOgyAYhVF4/0mt4KRObR+z/8ikadJEbM5Jvg3IJSWA/zREYzRFj4NzJadUm5b8/Rs9WGP31rTn8zs9esbuV9P7pv+gb3NUonr1EAAAAAAAAAB+6gMRUQ+3
+  </data>
+ </layer>
+ <layer name="5" width="50" height="50">
+  <properties>
+   <property name="z" value="5"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="6" width="50" height="50">
+  <properties>
+   <property name="z" value="6"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="block" width="50" height="50"/>
+ <objectgroup color="#55ff00" name="spawns" width="50" height="50">
+  <object name="door" x="800" y="352" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#55aaff" name="portals" width="50" height="50">
+  <object x="800" y="320" width="32" height="32">
+   <properties>
+    <property name="map" value="arkanos"/>
+    <property name="spawn" value="door1"/>
+    <property name="world" value="orthogonia"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="entities" width="50" height="50"/>
+</map>

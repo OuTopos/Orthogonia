@@ -2317,25 +2317,7 @@ return {
           type = "",
           x = 96,
           y = 224,
-          width = 64,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 256,
-          y = 160,
-          width = 32,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 288,
-          y = 160,
-          width = 32,
+          width = 96,
           height = 32,
           properties = {}
         },
@@ -2343,15 +2325,6 @@ return {
           name = "",
           type = "",
           x = 416,
-          y = 128,
-          width = 32,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 384,
           y = 128,
           width = 32,
           height = 32,
@@ -3002,6 +2975,51 @@ return {
           y = 1088,
           width = 32,
           height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 256,
+          y = 224,
+          width = 32,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 64,
+          y = 96,
+          width = 96,
+          height = 64,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 288,
+          y = 96,
+          width = 96,
+          height = 64,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 0,
+          y = 160,
+          width = 192,
+          height = 64,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 256,
+          y = 160,
+          width = 160,
+          height = 64,
           properties = {}
         }
       }
