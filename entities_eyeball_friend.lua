@@ -1,13 +1,13 @@
-entities_eyeball= {}
+entities_eyeball_friend = {}
 
-function entities_eyeball.new(x, y, z)
+function entities_eyeball_friend.new(x, y, z)
 	local self = {}
 	local remove = false
 
 	
-	buffer:addSheet("entities/eyeball", 32, 38)
+	buffer:addSheet("entities/eyeball_friend", 32, 38)
 	local spriteset = buffer.spriteset(x-16, y-16, z, 0, 8)
-	table.insert(spriteset.data, {sheet = "entities/eyeball", quad = 4} )
+	table.insert(spriteset.data, {sheet = "entities/eyeball_friend", quad = 4} )
 
 	-- Physics/Collision
 	local collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(12), self)
@@ -21,7 +21,7 @@ function entities_eyeball.new(x, y, z)
 	target.x = 0
 	target.y = 0
 	target.marginal = 1
-	target.active = false
+	target.active = true
 
 	local twitch = {}
 	twitch.delay = 1

@@ -2,9 +2,9 @@
 <map version="1.0" orientation="orthogonal" width="10" height="8" tilewidth="32" tileheight="32">
  <properties>
   <property name="name" value="Tat's Hut"/>
-  <property name="player" value="player"/>
+  <property name="player" value="player_platform"/>
   <property name="xg" value="0"/>
-  <property name="yg" value="0"/>
+  <property name="yg" value="9.81"/>
  </properties>
  <tileset firstgid="1" name="inside01" tilewidth="32" tileheight="32">
   <image source="../../images/tilesets/lorestrome/inside01.png" width="256" height="3507"/>
@@ -81,33 +81,24 @@
   <object x="32" y="0" width="256" height="96"/>
   <object x="288" y="0" width="32" height="256"/>
   <object x="32" y="224" width="128" height="32"/>
-  <object x="32" y="192" width="64" height="32"/>
-  <object x="128" y="96" width="32" height="64"/>
-  <object x="224" y="192" width="64" height="64"/>
   <object x="256" y="128" width="32" height="32"/>
+  <object x="32" y="192" width="64" height="32"/>
   <object x="96" y="96" width="32" height="32"/>
+  <object x="128" y="96" width="32" height="64"/>
   <object x="224" y="96" width="64" height="32"/>
+  <object x="224" y="192" width="64" height="64"/>
  </objectgroup>
  <objectgroup color="#55ff00" name="spawns" width="10" height="8">
   <object name="door" x="176" y="224" width="32" height="32"/>
-  <object name="bedside" x="96" y="128" width="32" height="32"/>
+  <object name="bedside" x="96" y="160" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#55aaff" name="portals" width="10" height="8">
-  <object name="door" x="160" y="256">
-   <properties>
-    <property name="name" value="test"/>
-    <property name="spawn" value=""/>
-    <property name="world" value="orthogonia"/>
-   </properties>
-   <polyline points="0,0 64,0"/>
-  </object>
-  <object x="160" y="256">
+  <object name="door" x="160" y="256" width="64" height="32">
    <properties>
     <property name="map" value="test"/>
     <property name="spawn" value="tats_house_door"/>
     <property name="world" value="orthogonia"/>
    </properties>
-   <polyline points="0,0 64,0"/>
   </object>
  </objectgroup>
 </map>

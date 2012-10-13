@@ -1,7 +1,8 @@
 entities_player = {}
 
-function entities_player.new(view, control, xn, yn)
+function entities_player.new(x, y, z)
 	local self = {}
+	self.isEntity = true
 	self.type = "player"
 
 
@@ -9,153 +10,112 @@ function entities_player.new(view, control, xn, yn)
 
 
 
-	local x, y, z = xn, yn, 32
-	local xr, yr, zr = x, y, z
+	--local x, y, z = xn, yn, 32
 	local xvel, yvel = 0, 0
-	local speed = 128
-	local friction = 0.1
-	local direction = "down"
-
-	local moving = 0
+	local speed = 0
+	local friction = 0.99
+	local direction = 0
 
 	-- SPRITES
 	--buffer:addSheet("tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", 64, 64)
-	buffer:addSheet("soldier", 64, 64)
+	buffer:addSheet("BODY_skeleton", 64, 64)
 	buffer:addSheet("HEAD_chain_armor_hood", 64, 64)
 	buffer:addSheet("HEAD_chain_armor_helmet", 64, 64)
 	buffer:addSheet("FEET_shoes_brown", 64, 64)
 
-	local spriteset = buffer.spriteset(xr, yr, z, 16, 32)
+	local spriteset = buffer.spriteset(x-16, y-16, z, 16, 32)
 
 	--table.insert(spriteset.data, {sheet = "tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", quad = 14} )
-	table.insert(spriteset.data, {sheet = "soldier", quad = 14} )
+	table.insert(spriteset.data, {sheet = "BODY_skeleton", quad = 14} )
 	table.insert(spriteset.data, {sheet = "HEAD_chain_armor_hood", quad = 14} )
 	--table.insert(spriteset.data, {sheet = "HEAD_chain_armor_helmet", quad = 14} )
 	table.insert(spriteset.data, {sheet = "FEET_shoes_brown", quad = 14} )
 
 
-
-
-	-- COLLISION
-	local collision = {}
-	collision.w = 32
-	collision.h = 16
-	collision.l = xr
-	collision.t = yr + 16
-	function self.updateCollision()
-		collision.l = xr
-		collision.t = yr + 16
-	end
-	function self.getCollision()
-		return collision.l, collision.t, collision.w, collision.h
-	end
-	function self.collide(obj, dx, dy)
-		self.updatePosition(x + dx, y + dy)
-		self.updateCollision()
-	end
-	bump.add(self)
-
+	-- Physics
+	--local hitbox = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newRectangleShape(0, -8, 28, 48), self, true)
+	local object = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14), self)
+	object.fixture:setUserData(self)
+	object.body:setLinearDamping( 8 )
+	object.body:setFixedRotation( true )
+	object.fixture:setRestitution( 0.4 )
 
 
 	function self.update(dt)
 		self.updateInput(dt)
-		self.updateCollision()
+		self.updatePosition()
 		self.updateAnimation(dt)
 	end
 
 	function self.updateInput(dt)
-		step = 0
-		if moving > 0 then
-			step = speed * dt
-			moving = moving - step
+		fx, fy = 0, 0
+
+		if love.keyboard.isDown("up") then
+			direction = 3.141592654
+			fy = -5000
+		end
+		if love.keyboard.isDown("right") then
+			direction = 1.570796327
+			fx = 5000
+		end
+		if love.keyboard.isDown("down") then
+			direction = 0
+			fy = 5000
+		end
+		if love.keyboard.isDown("left") then
+			direction = 4.71238898
+			fx = -5000
 		end
 
-		if moving <= 0 then
-			if love.keyboard.isDown("up") then
-				move_to = {x, y-1}
-				moving = moving + 32
-				direction = "up"
-			elseif love.keyboard.isDown("right") then
-				move_to = {x+1, y}
-				moving = moving + 32
-				direction = "right"
-			elseif love.keyboard.isDown("down") then
-				move_to = {x, y+1}
-				moving = moving + 32
-				direction = "down"
-			elseif love.keyboard.isDown("left") then
-				move_to = {x-1, y}
-				moving = moving + 32
-				direction = "left"
-			end
-		end
-
-		if moving < 0 then
-			step = step + moving
-			moving = 0
-		end
-			
-		if direction == "up" then
-			y = y - step
-		elseif direction == "right" then
-			x = x + step
-		elseif direction == "down" then
-			y = y + step
-		elseif direction == "left" then
-			x = x - step
-		end
-
-		self.updatePosition()
+		object.body:applyForce( fx, fy )
 	end
 
 	function self.updatePosition(xn, yn)
-		x = xn or x
-		y = yn or y
-
-		xr = math.floor( x + 0.5 )
-		yr = math.floor( y + 0.5 )
+		--hitbox.body:setX(object.body:getX())
+		--hitbox.body:setY(object.body:getY())
+		x = math.floor( object.body:getX() + 0.5 ) -16
+		y = math.floor( object.body:getY() + 0.5 ) -16
 
 		-- Update sprite
-		spriteset.x = xr
-		spriteset.y = yr
+		spriteset.x = x
+		spriteset.y = y
 
 		-- Set the camera
-		camera:center(xr, yr)
+		--camera:center(x, y)
 	end
 
-	local animationdt = 0
 	local animation = {}
 	animation.quad = 1
-	function self.updateAnimation(dt)
-		animationdt = animationdt + dt
+	animation.dt = 0
 
-		if direction == "up" then
+	function self.updateAnimation(dt)
+		if direction > -0.785398163 and direction < 0.785398163 then
 			-- Up
-			if moving > 0 then
-				self.animate(2, 9, 1, dt)
+			if speed > 0 then
+				self.animate(20, 27, 0.08, dt)
 			else
-				animation.quad = 1
+				self.animate(19)
 			end
-		elseif direction == "right" then
+		elseif direction > 0.785398163 and direction < 2.35619449 then
 			-- Right
-			if moving > 0 then
-				self.animate(29, 36, 1, dt)
+			if speed > 0 then
+				self.animate(29, 36, 0.08, dt)
 			else
-				animation.quad = 28
+				self.animate(28)
 			end
-		elseif direction == "down" then
+		elseif direction > 2.35619449 and direction < 3.926990817 then
 			-- Down
-			if moving > 0 then
-				self.animate(20, 27, 1, dt)
+			if speed > 0 then
+				self.animate(2, 9, 0.08, dt)
 			else
-				animation.quad = 19
+				self.animate(1)
 			end
-		elseif direction == "left" then
+		elseif direction > 3.926990817 and direction < 5.497787144 then
 			-- Left
-			if moving > 0 then
-				self.animate(11, 18, 1, dt)
+			if speed > 0 then
+				self.animate(11, 18, 0.08, dt)
 			else
-				animation.quad = 10
+				self.animate(10)
 			end
 		end
 
@@ -164,21 +124,31 @@ function entities_player.new(view, control, xn, yn)
 		end
 	end
 
-	function self.animate(first, last, speed, dt)
-		animationdt = animationdt + dt
-		print(dt)
+	function self.animate(first, last, delay, dt)
+		if dt then
+			animation.dt = animation.dt + dt
 
-		if animation.quad < first then
+			if animation.dt > delay then
+				animation.dt = animation.dt - delay
+				animation.quad = animation.quad + 1
+			end
+
+			if animation.quad < first or animation.quad > last then
+					animation.quad = first
+			end
+		else
+			animation.dt = 0
 			animation.quad = first
 		end
+	end
 
-		if animationdt > 0.2 then
-			animationdt = animationdt - 0.2
-			animation.quad = animation.quad + 1
-			if animation.quad > last then
-				animation.quad = first
+	function self.beginContact(fixture, contact)
+		if fixture:isSensor() then
+			if fixture:getUserData().portal then
+				map.load(fixture:getUserData().map, fixture:getUserData().spawn, fixture:getUserData().world)
 			end
 		end
+
 	end
 
 	function self.draw()
@@ -187,12 +157,16 @@ function entities_player.new(view, control, xn, yn)
 	end
 
 	function self.destroy()
-		bump.remove(self)
+	--	physics.destroy()
 	end
 
 	-- Basic functions
 	function self.setPosition(xn, yn)
 		x, y = xn, yn
+	end
+	
+	function self.getPosition()
+		return x, y
 	end
 
 	function self.getX()

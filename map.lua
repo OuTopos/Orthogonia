@@ -14,7 +14,9 @@ function map.load(name, spawn, world)
 	map.loaded = require("/worlds/"..world.."/"..name)
 	if map.loaded.orientation == "orthogonal" then
 		-- Physics
-		physics.setWorld(map.loaded.width, map.loaded.height, map.loaded.tilewidth, false)
+		map.loaded.properties.xg = map.loaded.properties.xg or 0
+		map.loaded.properties.yg = map.loaded.properties.yg or 0
+		physics.setWorld(map.loaded.properties.xg * map.loaded.tilewidth, map.loaded.properties.yg * map.loaded.tileheight, map.loaded.tileheight, false)
 
 		map.loaded.spawns = {}
 		-- Loading objects layers.
@@ -37,7 +39,6 @@ function map.load(name, spawn, world)
 							for i,vertix in ipairs(object.polyline) do
 								table.insert(vertices, vertix.x)
 								table.insert(vertices, vertix.y)
-								print(vertix.x..":"..vertix.y)
 							end
 							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newChainShape(false, unpack(vertices)))
 
@@ -49,9 +50,16 @@ function map.load(name, spawn, world)
 							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height))
 						end
 					end
+
 				elseif layer.name == "portals" then
-					-- Portal, add to collision.
+					-- Adding portals to physics objects
 					for i,object in ipairs(layer.objects) do
+						-- Creating the body and userdata
+						local body = love.physics.newBody(physics.world, object.x, object.y, "static")
+						local shape
+						local userdata = {portal = true, map = object.properties.map, spawn = object.properties.spawn, world = object.properties.world}
+
+						-- Creating the shape
 						if object.polygon then
 							--Polygon
 							local vertices = {}
@@ -59,31 +67,29 @@ function map.load(name, spawn, world)
 								table.insert(vertices, vertix.x)
 								table.insert(vertices, vertix.y)
 							end
-							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newPolygonShape(unpack(vertices)), true)
+							shape = love.physics.newPolygonShape(unpack(vertices))
 						elseif object.polyline then
-							--Polylinelocal
-							vertices = {}
+							--Polyline
+							local vertices = {}
 							for i,vertix in ipairs(object.polyline) do
 								table.insert(vertices, vertix.x)
 								table.insert(vertices, vertix.y)
-								print(vertix.x..":"..vertix.y)
 							end
-							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newChainShape(false, unpack(vertices)), true)
-
+							shape = love.physics.newChainShape(false, unpack(vertices))
 						elseif object.gid then
 							--Tile
-							physics.newObject(love.physics.newBody(physics.world, object.x, object.y-map.loaded.tileheight, "static"), love.physics.newRectangleShape(map.loaded.tilewidth/2, map.loaded.tileheight/2, map.loaded.tilewidth, map.loaded.tileheight), true)
+							shape = love.physics.newRectangleShape(map.loaded.tilewidth/2, map.loaded.tileheight/2, map.loaded.tilewidth, map.loaded.tileheight)
 						else
 							--Rectangle
-							physics.newObject(love.physics.newBody(physics.world, object.x, object.y, "static"), love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height), nil, true)
+							shape = love.physics.newRectangleShape(object.width/2, object.height/2, object.width, object.height)
 						end
 
+						physics.newObject(body, shape, userdata, true)
 
-						local data = {map = object.properties.map, spawn = object.properties.spawn, world = object.properties.world}
-						--collision.new(object.x, object.y, object.width, object.height, layer.properties.behavior, data)
 					end
+
 				elseif layer.name == "spawns" then
-					-- Spawn
+					-- Adding spawns to the spawns list
 					for i,object in ipairs(layer.objects) do
 						map.loaded.spawns[object.name] = object
 					end
@@ -92,7 +98,7 @@ function map.load(name, spawn, world)
 		end
 
 		-- Map bounderies
-		physics.newObject(love.physics.newBody(physics.world, 0, 0, "static"), love.physics.newChainShape(true, 0, 0, map.loaded.width * map.loaded.tilewidth, 0, map.loaded.width * map.loaded.tilewidth, map.loaded.height * map.loaded.tileheight, 0, map.loaded.height * map.loaded.tileheight))
+		--physics.newObject(love.physics.newBody(physics.world, 0, 0, "static"), love.physics.newChainShape(true, -1, -1, map.loaded.width * map.loaded.tilewidth + 1, -1, map.loaded.width * map.loaded.tilewidth + 1, map.loaded.height * map.loaded.tileheight + 1, -1, map.loaded.height * map.loaded.tileheight))
 
 		-- Loading tilesets
 		for i,tileset in ipairs(map.loaded.tilesets) do
@@ -104,14 +110,20 @@ function map.load(name, spawn, world)
 		map.view.size.y = math.floor(screen.height / map.loaded.tileheight + 0.5 ) + 2
 
 		-- Setting camera boundaries
-		camera:setBoundaries(0, map.loaded.width * map.loaded.tilewidth, 0, map.loaded.height * map.loaded.tileheight)
+		camera.setBoundaries(0, map.loaded.width * map.loaded.tilewidth, 0, map.loaded.height * map.loaded.tileheight)
 
 		-- Spawning player
+		map.loaded.properties.player = map.loaded.properties.player or "player"
 		if map.loaded.spawns[spawn] then
-			player = entities.new("player", map.loaded.spawns[spawn].x, map.loaded.spawns[spawn].y, 32)
+			player = entities.new(map.loaded.properties.player, map.loaded.spawns[spawn].x + map.loaded.spawns[spawn].width / 2, map.loaded.spawns[spawn].y + map.loaded.spawns[spawn].height / 2, 32)
 		else
-			player = entities.new("player", 64, 64, 32)
+			player = entities.new(map.loaded.properties.player, 64, 64, 32)
+			
 		end
+
+		--Make the camera follow the player
+		camera.follow = player
+
 	elseif map.loaded.orientation == "isometric" then
 		print("ios")
 		for i,layer in ipairs(map.loaded.layers) do
@@ -136,6 +148,7 @@ end
 function map.unload()
 	map.loaded = nil
 	player = nil
+	camera.follow = nil
 	entities.destroy()
 	physics.destroy()
 	buffer:reset()

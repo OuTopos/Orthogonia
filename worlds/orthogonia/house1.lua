@@ -7,7 +7,10 @@ return {
   tilewidth = 32,
   tileheight = 32,
   properties = {
-    ["name"] = "Tat's Hut"
+    ["name"] = "Tat's Hut",
+    ["player"] = "player",
+    ["xg"] = "0",
+    ["yg"] = "0"
   },
   tilesets = {
     {
@@ -243,7 +246,7 @@ return {
           x = 0,
           y = 0,
           width = 32,
-          height = 288,
+          height = 256,
           properties = {}
         },
         {
@@ -261,16 +264,7 @@ return {
           x = 288,
           y = 0,
           width = 32,
-          height = 288,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 224,
-          y = 224,
-          width = 64,
-          height = 64,
+          height = 256,
           properties = {}
         },
         {
@@ -279,6 +273,24 @@ return {
           x = 32,
           y = 224,
           width = 128,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 32,
+          y = 192,
+          width = 64,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 128,
+          y = 96,
+          width = 32,
           height = 64,
           properties = {}
         },
@@ -288,7 +300,7 @@ return {
           x = 224,
           y = 192,
           width = 64,
-          height = 32,
+          height = 64,
           properties = {}
         },
         {
@@ -303,28 +315,10 @@ return {
         {
           name = "",
           type = "",
-          x = 32,
-          y = 192,
-          width = 64,
-          height = 32,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
           x = 96,
-          y = 112,
+          y = 96,
           width = 32,
-          height = 16,
-          properties = {}
-        },
-        {
-          name = "",
-          type = "",
-          x = 128,
-          y = 112,
-          width = 32,
-          height = 48,
+          height = 32,
           properties = {}
         },
         {
@@ -358,7 +352,7 @@ return {
           name = "bedside",
           type = "",
           x = 96,
-          y = 160,
+          y = 128,
           width = 32,
           height = 32,
           properties = {}
@@ -377,8 +371,29 @@ return {
           type = "",
           x = 160,
           y = 256,
-          width = 64,
-          height = 32,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 64, y = 0 }
+          },
+          properties = {
+            ["name"] = "test",
+            ["spawn"] = "",
+            ["world"] = "orthogonia"
+          }
+        },
+        {
+          name = "",
+          type = "",
+          x = 160,
+          y = 256,
+          width = 0,
+          height = 0,
+          polyline = {
+            { x = 0, y = 0 },
+            { x = 64, y = 0 }
+          },
           properties = {
             ["map"] = "test",
             ["spawn"] = "tats_house_door",

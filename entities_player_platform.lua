@@ -1,6 +1,6 @@
-entities_player = {}
+entities_player_platform = {}
 
-function entities_player.new(x, y, z)
+function entities_player_platform.new(x, y, z)
 	local self = {}
 	self.type = "player"
 
@@ -34,9 +34,9 @@ function entities_player.new(x, y, z)
 	-- Physics
 	local hitbox = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newRectangleShape(0, -8, 28, 48), self, true)
 	local object = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14), self)
-	object.body:setLinearDamping( 8 )
-	--physics.body:setFixedRotation( true )
-	object.fixture:setRestitution( 0.4 )
+	object.body:setLinearDamping( 0.1 )
+	object.body:setFixedRotation( true )
+	object.fixture:setRestitution( 0 )
 
 
 
@@ -80,7 +80,7 @@ function entities_player.new(x, y, z)
 		spriteset.y = y
 
 		-- Set the camera
-		camera:center(x, y)
+		--camera:center(x, y)
 	end
 
 	local animation = {}
@@ -153,6 +153,10 @@ function entities_player.new(x, y, z)
 	-- Basic functions
 	function self.setPosition(xn, yn)
 		x, y = xn, yn
+	end
+	
+	function self.getPosition()
+		return x, y
 	end
 
 	function self.getX()

@@ -9,7 +9,7 @@ end
 function gui.draw()
 	if gui.enabled then
 		love.graphics.setColor(255, 255, 255, 255)
-		--love.graphics.print("FPS: "..love.timer.getFPS(), camera.x + 2, camera.y + 0)
+		love.graphics.print("FPS: "..love.timer.getFPS(), camera.x + screen.width - 40, camera.y + 4)
 		love.graphics.draw(gui.images.hp, camera.x + 2,  camera.y + 1)
 		love.graphics.draw(gui.images.test, camera.x + 2,  camera.y + screen.height - 66)
 

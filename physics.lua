@@ -5,13 +5,14 @@ physics.objects = {}
 function physics.setWorld(xg, yg, meter, sleep)
 	physics.destroy()
 	love.physics.setMeter(meter or 32)
-	physics.world = love.physics.newWorld(0, 0, sleep or false)
+	physics.world = love.physics.newWorld(xg, yg, sleep or false)
+	physics.world:setCallbacks(physics.beginContact, physics.endContact)
 end
 
-function physics.newObject(body, shape, entity, sensor)
+function physics.newObject(body, shape, userdata, sensor)
 	local object = {body = body, shape = shape}
 	object.fixture = love.physics.newFixture(object.body, object.shape, 5)
-	object.fixture:setUserData(entity)
+	object.fixture:setUserData(userdata)
 	if sensor then
 		object.fixture:setSensor(true)
 	end
@@ -55,7 +56,7 @@ function physics.draw()
 		end
 
 		if physics.objects[i].shape:getType() == "circle" then
-			love.graphics.circle("fill", physics.objects[i].body:getX(), physics.objects[i].body:getY(), physics.objects[i].shape:getRadius(), 16)
+			love.graphics.circle("fill", physics.objects[i].body:getX(), physics.objects[i].body:getY(), physics.objects[i].shape:getRadius())
 		elseif physics.objects[i].shape:getType() == "polygon" then
 			love.graphics.polygon("fill", physics.objects[i].body:getWorldPoints(physics.objects[i].shape:getPoints()))
 		elseif physics.objects[i].shape:getType() == "edge" then
@@ -65,3 +66,19 @@ function physics.draw()
 		end
 	end
 end
+
+
+function physics.beginContact(a, b, contact)
+	if a:getUserData() == player then
+		a:getUserData().beginContact(b, contact)
+	end
+	if b:getUserData() == player then
+		b:getUserData().beginContact(a, contact)
+	end
+end
+
+function physics.endContact(a, b, contact)
+	
+end
+
+--physics.preSolve, physics.postSolve

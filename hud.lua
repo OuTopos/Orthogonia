@@ -22,6 +22,9 @@ function hud.draw()
 
 			love.graphics.setColor(0, 255, 255, 255)
 			love.graphics.print(i, entities.data[i].getX(), entities.data[i].getY())
+			if entities.data[i].getDirection then
+				love.graphics.print(math.floor(entities.data[i].getDirection() + 0.5), entities.data[i].getX(), entities.data[i].getY() + 10)
+			end
 		end
 		
 		-- Text background

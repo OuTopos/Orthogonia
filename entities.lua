@@ -4,8 +4,10 @@ entities.remove = {}
 entities.refresh = false
 
 -- All the types of entities
-require	"entities_player_physics"
+require	"entities_player"
+require	"entities_player_platform"
 require	"entities_eyeball"
+require	"entities_eyeball_friend"
 require	"entities_snake"
 require	"entities_coin"
 
@@ -59,4 +61,35 @@ function entities.draw()
 	for i = 1, #entities.data do
 		entities.data[i].draw(dt, i)
 	end
+end
+
+
+
+entity_functions = {}
+
+function entity_functions.destroy()
+--	physics.destroy()
+end
+
+-- Basic functions
+function entity_functions.setPosition(xn, yn)
+	x, y = xn, yn
+end
+
+function entity_functions.getPosition()
+	return x, y
+end
+
+function entity_functions.getX()
+	return math.floor( x + 0.5 )
+end
+function entity_functions.getY()
+	return math.floor( y + 0.5 )
+end
+
+function entity_functions.getXvel()
+	return xvel
+end
+function entity_functions.getYvel()
+	return yvel
 end

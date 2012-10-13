@@ -1,13 +1,13 @@
 require "screen"
 require "camera"
 require "buffer"
+require "physics"
+require "entities"
 require "map"
+require "env"
 require "gui"
 require "hud"
-require "env"
-require "physics"
 
-require "entities"
 --require "client"
 
 function love.load()
@@ -26,9 +26,9 @@ function love.load()
 	font = love.graphics.newImageFont(imagefont," abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?-+/():;%&`'*#=[]\"")
 	love.graphics.setFont(font)
 
-	camera:scale(screen.scale)
+	camera.scale(screen.scale)
 	gui.load()
-	map.load("test")
+	map.load("house1", "bedside")
 end
 
 function love.keypressed(key)
@@ -59,6 +59,9 @@ function love.keypressed(key)
 	if key == "w" then
 		map.load("house1", "bedside")
 	end
+	if key == "s" then
+		map.load("platform", "start")
+	end
 	if key == "e" then
 		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
@@ -71,6 +74,8 @@ function love.keypressed(key)
 		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		entities.new("eyeball", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("eyeball", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("eyeball_friend", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 	end
 	if key == "n" then
 		poop = #entities.data
@@ -98,13 +103,14 @@ end
 function love.update(dt)
 	physics.update(dt)
 	entities.update(dt)
+	camera.update()
 	env.update(dt)
 
 	map.update(camera.x, camera.y)
 end
 
 function love.draw()
-	camera:set()
+	camera.set()
 
 	
 	-- Draw the sprite buffer
@@ -123,5 +129,5 @@ function love.draw()
 	-- Draw the HUD
 	hud.draw()
 
-	camera:unset()
+	camera.unset()
 end

@@ -21,64 +21,87 @@ camera.boundaries.right = 1000
 camera.boundaries.top = 0
 camera.boundaries.bottom = 1000
 
+camera.follow = nil
 
 
 
-function camera:set()
+
+function camera.set()
 	love.graphics.push()
-	love.graphics.rotate(-self.rotation)
-	love.graphics.scale(self.scaleX, self.scaleY)
-	love.graphics.translate(-self.x, -self.y)
+	love.graphics.rotate(-camera.rotation)
+	love.graphics.scale(camera.scaleX, camera.scaleY)
+	love.graphics.translate(-camera.x, -camera.y)
 end
 
-function camera:unset()
+function camera.unset()
 	love.graphics.pop()
 end
 
-function camera:move(dx, dy)
-	self.x = self.x + (dx or 0)
-	self.y = self.y + (dy or 0)
+function camera.move(dx, dy)
+	camera.x = camera.x + (dx or 0)
+	camera.y = camera.y + (dy or 0)
 end
 
-function camera:rotate(dr)
-	self.rotation = self.rotation + dr
+function camera.rotate(dr)
+	camera.rotation = camera.rotation + dr
 end
 
-function camera:scale(sx, sy)
+function camera.scale(sx, sy)
 	sx = sx or 1
-	self.scaleX = self.scaleX * sx
-	self.scaleY = self.scaleY * (sy or sx)
+	camera.scaleX = camera.scaleX * sx
+	camera.scaleY = camera.scaleY * (sy or sx)
 end
 
-function camera:setPosition(x, y)
-	self.x = x or self.x
-	self.y = y or self.y
+function camera.setPosition(x, y)
+	camera.x = x or camera.x
+	camera.y = y or camera.y
 end
 
-function camera:setScale(sx, sy)
-	self.scaleX = sx or self.scaleX
-	self.scaleY = sy or self.scaleY
+function camera.setScale(sx, sy)
+	camera.scaleX = sx or camera.scaleX
+	camera.scaleY = sy or camera.scaleY
 end
 
 -- Mitt eget
-function camera:center(dx, dy)
-	self.x = dx - screen.width / 2
-	self.y = dy - screen.height / 2
+function camera.update()
+	if camera.follow then
+		camera.x, camera.y = camera.follow.getPosition()
 
-	if self.x < camera.boundaries.left then
-		self.x = camera.boundaries.left
-	elseif self.x > camera.boundaries.right then
-		self.x = camera.boundaries.right
-	end
+		camera.x = camera.x - screen.width / 2
+		camera.y = camera.y - screen.height / 2
 
-	if self.y < camera.boundaries.top then
-		self.y = camera.boundaries.top
-	elseif self.y > camera.boundaries.bottom then
-		self.y = camera.boundaries.bottom
+		if camera.x < camera.boundaries.left then
+			camera.x = camera.boundaries.left
+		elseif camera.x > camera.boundaries.right then
+			camera.x = camera.boundaries.right
+		end
+
+		if camera.y < camera.boundaries.top then
+			camera.y = camera.boundaries.top
+		elseif camera.y > camera.boundaries.bottom then
+			camera.y = camera.boundaries.bottom
+		end
 	end
 end
 
-function camera:setBoundaries(left, right, top, bottom)
+function camera.center(dx, dy)
+	camera.x = dx - screen.width / 2
+	camera.y = dy - screen.height / 2
+
+	if camera.x < camera.boundaries.left then
+		camera.x = camera.boundaries.left
+	elseif camera.x > camera.boundaries.right then
+		camera.x = camera.boundaries.right
+	end
+
+	if camera.y < camera.boundaries.top then
+		camera.y = camera.boundaries.top
+	elseif camera.y > camera.boundaries.bottom then
+		camera.y = camera.boundaries.bottom
+	end
+end
+
+function camera.setBoundaries(left, right, top, bottom)
 	camera.boundaries.left = left
 	camera.boundaries.right = right - screen.width
 	camera.boundaries.top = top
