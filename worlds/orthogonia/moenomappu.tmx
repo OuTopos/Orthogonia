@@ -67,7 +67,18 @@
    eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
   </data>
  </layer>
- <objectgroup color="#ff0000" name="block" width="50" height="50"/>
+ <objectgroup color="#ff0000" name="block" width="50" height="50">
+  <object x="704" y="224" width="96" height="160"/>
+  <object x="800" y="224" width="32" height="96"/>
+  <object x="832" y="224" width="32" height="160"/>
+  <object x="736" y="384" width="32" height="32"/>
+  <object x="864" y="320" width="32" height="32"/>
+  <object x="960" y="352" width="32" height="32"/>
+  <object x="544" y="320" width="32" height="32"/>
+  <object x="864" y="448" width="32" height="16"/>
+  <object x="984" y="288" width="32" height="16"/>
+  <object x="440" y="288" width="32" height="16"/>
+ </objectgroup>
  <objectgroup color="#55ff00" name="spawns" width="50" height="50">
   <object name="door" x="800" y="352" width="32" height="32"/>
  </objectgroup>

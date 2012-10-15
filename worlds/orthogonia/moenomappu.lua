@@ -508,7 +508,98 @@ return {
       visible = true,
       opacity = 1,
       properties = {},
-      objects = {}
+      objects = {
+        {
+          name = "",
+          type = "",
+          x = 704,
+          y = 224,
+          width = 96,
+          height = 160,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 800,
+          y = 224,
+          width = 32,
+          height = 96,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 832,
+          y = 224,
+          width = 32,
+          height = 160,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 736,
+          y = 384,
+          width = 32,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 864,
+          y = 320,
+          width = 32,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 960,
+          y = 352,
+          width = 32,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 544,
+          y = 320,
+          width = 32,
+          height = 32,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 864,
+          y = 448,
+          width = 32,
+          height = 16,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 984,
+          y = 288,
+          width = 32,
+          height = 16,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "",
+          x = 440,
+          y = 288,
+          width = 32,
+          height = 16,
+          properties = {}
+        }
+      }
     },
     {
       type = "objectgroup",

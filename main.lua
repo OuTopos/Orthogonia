@@ -70,12 +70,12 @@ function love.keypressed(key)
 		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
 		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("eyeball", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("eyeball", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
-		entities.new("eyeball_friend", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
+		entities.new("coin", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		entities.new("coin", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		entities.new("coin", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		entities.new("eyeball", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		entities.new("eyeball", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		entities.new("eyeball_friend", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
 	end
 	if key == "n" then
 		poop = #entities.data
