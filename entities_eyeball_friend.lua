@@ -67,8 +67,10 @@ function entities_eyeball_friend.new(x, y, z)
 		end
 
 
-		x = math.floor( collision.body:getX() + 0.5 ) -16
-		y = math.floor( collision.body:getY() + 0.5 ) -16
+		--x = math.floor( collision.body:getX() + 0.5 ) -16
+		--y = math.floor( collision.body:getY() + 0.5 ) -16
+		x = collision.body:getX() - 16
+		y = collision.body:getY() - 16
 		direction = math.atan2(collision.body:getLinearVelocity()) / (math.pi / 180)
 
 		spriteset.x = x

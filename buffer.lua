@@ -74,8 +74,6 @@ function buffer:draw()
 			end
 		end
 	end
-	
-	--self.data = {}
 end
 
 function buffer.sort(a, b)

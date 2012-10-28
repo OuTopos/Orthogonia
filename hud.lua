@@ -49,4 +49,17 @@ function hud.draw()
 			love.graphics.print(love.joystick.getNumAxes(1), camera.x + 2, camera.y + 72)
 		end
 	end
-end	
+end
+
+
+
+
+grid = {}
+grid.width = 128
+grid.height = 64
+
+function grid.draw()
+
+	--for i = 1, 16, i++ do
+
+end

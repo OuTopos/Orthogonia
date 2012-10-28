@@ -6,17 +6,27 @@ map.view.buffer = {}
 function map.load(name, spawn, world)
 	name = name or "origo"
 	world = world or "orthogonia"
+	print(world.."/"..name)
 
 	-- Unloading previous map.
 	map.unload()
 
 	-- Loading map.
 	map.loaded = require("/worlds/"..world.."/"..name)
+
+	map.loaded.name = name
+	map.loaded.world = world
+
 	if map.loaded.orientation == "orthogonal" then
+
 		-- Physics
 		map.loaded.properties.xg = map.loaded.properties.xg or 0
 		map.loaded.properties.yg = map.loaded.properties.yg or 0
-		physics.setWorld(map.loaded.properties.xg * map.loaded.tilewidth, map.loaded.properties.yg * map.loaded.tileheight, map.loaded.tileheight, false)
+		physics.setWorld(world.."/"..name, map.loaded.properties.xg * map.loaded.tilewidth, map.loaded.properties.yg * map.loaded.tileheight, map.loaded.tileheight, false)
+
+		-- Load gamestate
+		game.load()
+
 
 		map.loaded.spawns = {}
 		-- Loading objects layers.
@@ -114,11 +124,17 @@ function map.load(name, spawn, world)
 
 		-- Spawning player
 		map.loaded.properties.player = map.loaded.properties.player or "player"
-		if map.loaded.spawns[spawn] then
-			player = entities.new(map.loaded.properties.player, map.loaded.spawns[spawn].x + map.loaded.spawns[spawn].width / 2, map.loaded.spawns[spawn].y + map.loaded.spawns[spawn].height / 2, 32)
+
+		if player then
+			print("Player did exist")
+			print("  Moving to "..(map.loaded.spawns[spawn].x + map.loaded.spawns[spawn].width / 2)..":"..(map.loaded.spawns[spawn].y + map.loaded.spawns[spawn].height / 2))
+			player.setPosition(map.loaded.spawns[spawn].x + map.loaded.spawns[spawn].width / 2, map.loaded.spawns[spawn].y + map.loaded.spawns[spawn].height / 2)
 		else
-			player = entities.new(map.loaded.properties.player, 64, 64, 32)
-			
+			if map.loaded.spawns[spawn] then
+				player = entities.new(map.loaded.properties.player, map.loaded.spawns[spawn].x + map.loaded.spawns[spawn].width / 2, map.loaded.spawns[spawn].y + map.loaded.spawns[spawn].height / 2, 32)
+			else
+				player = entities.new(map.loaded.properties.player, 64, 64, 32)
+			end
 		end
 
 		--Make the camera follow the player
@@ -145,12 +161,17 @@ function map.load(name, spawn, world)
 	end
 end
 
+function map.loadPhysics()
+	-- body
+end
+
 function map.unload()
+	game.update()
 	map.loaded = nil
 	player = nil
 	camera.follow = nil
 	entities.destroy()
-	physics.destroy()
+	--physics.destroy()
 	buffer:reset()
 end
 
@@ -196,7 +217,7 @@ function map.draw()
 					if y > -1 and y < map.loaded.height then
 
 						-- Assign a new table to spriteset
-						spriteset = buffer.spriteset(x*map.loaded.tilewidth, y*map.loaded.tileheight, z*map.loaded.tileheight)
+						spriteset = buffer.spriteset(map.tilePosition(x, y, z))
 
 						-- Iterate the layerdepth
 						for i=1, layerdepth do
@@ -204,10 +225,10 @@ function map.draw()
 							if map.loaded.layers[i].type == "tilelayer" then
 
 								-- Checking so tile exists.
-								if map.loaded.layers[i].data[y*map.loaded.width+x+1] then
+								if map.loaded.layers[i].data[map.tileIndex(x, y)] then
 									-- Checking so tile is not empty.
-									if map.loaded.layers[i].data[y*map.loaded.width+x+1] > 0 then
-										
+									if map.loaded.layers[i].data[map.tileIndex(x, y)] > 0 then
+
 										-- Get z from tilelayer properties.
 										z = tonumber(map.loaded.layers[i].properties.z)
 
@@ -216,7 +237,7 @@ function map.draw()
 											-- Check for sprites in spriteset to avoid sending empty spriteset to buffer
 											if next(spriteset.data) ~= nil then
 												buffer:add(spriteset)
-												spriteset = buffer.spriteset(x*map.loaded.tilewidth, y*map.loaded.tileheight, z*map.loaded.tileheight)
+												spriteset = buffer.spriteset(map.tilePosition(x, y, z))
 											end
 											-- Setting spriteset z to new z
 											spriteset.z = z*map.loaded.tileheight
@@ -225,7 +246,7 @@ function map.draw()
 										-- Adding sprite to spriteset.
 										poop = map.findSheet(map.loaded.layers[i].data[y*map.loaded.width+x+1])
 										table.insert(spriteset.data, {sheet = poop[1], quad = poop[2]} )
-										
+											
 									end
 								end
 
@@ -248,4 +269,22 @@ function map.draw()
 		end
 	end
 
+end
+
+function map.tileIndex(x, y)
+	return y*map.loaded.width+x+1
+end
+
+function map.tilePosition(x, y, z)
+	if map.loaded.orientation == "orthogonal" then
+		nx = x * map.loaded.tilewidth
+		ny = y * map.loaded.tileheight
+		nz = z * map.loaded.tileheight
+	elseif map.loaded.orientation == "isometric" then
+		nx = (x - y) * (map.loaded.tilewidth / 2)
+		ny = (y + x) * (map.loaded.tileheight / 2)
+		nz = z
+	end
+
+	return nx, ny, nz
 end

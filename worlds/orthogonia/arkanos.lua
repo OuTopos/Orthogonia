@@ -1277,9 +1277,9 @@ return {
           name = "",
           type = "",
           x = 32,
-          y = 1216,
+          y = 1248,
           width = 32,
-          height = 64,
+          height = 32,
           properties = {}
         },
         {
@@ -1313,7 +1313,7 @@ return {
           name = "door1",
           type = "",
           x = 32,
-          y = 1152,
+          y = 1184,
           width = 32,
           height = 32,
           properties = {}
@@ -1348,7 +1348,7 @@ return {
           name = "",
           type = "",
           x = 32,
-          y = 1184,
+          y = 1216,
           width = 32,
           height = 32,
           properties = {

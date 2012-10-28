@@ -1,24 +1,53 @@
 game = {}
-game.host = false
+game.state = {}
 
-function game:start(host)
-	if host then
-		--Do the host/server things.
-		self.host = true
-		-- load map and much more
+function game.start()
+	if gamestate then
+		--game.state = gamestate
 	else
-		-- Client things
-		client.load()
-		-- fetch map and much more
+		map.load("house1", "bedside")
 	end
 end
 
-function game:update()
-	if self.host then
+function game.update()
+	print("Attempting to save state")
+	if map.loaded then
+		print("  Saving state for: "..map.loaded.name)
+		if game.state[map.loaded.name] then
+			print("    "..map.loaded.name.." was not nil")
+			game.state[map.loaded.name].entities = entities.data
+			game.state[map.loaded.name].player = player
 
-	else
-		client.update(dt)
+		else
+			print("    "..map.loaded.name.." was nil")
+			game.state[map.loaded.name] = {}
+			game.state[map.loaded.name].entities = entities.data
+			game.state[map.loaded.name].player = player
+		end
+		print("  Save for "..map.loaded.name.." complete")
 	end
+	print("")
+end
+
+function game.load(state)
+
+
+	-- Load map
+	-- Load physics
+	-- Load entities
+
+
+	print("Attempting to load state")
+	if state then
+		game.state = state
+	end
+
+	if game.state[map.loaded.name] then
+		print("  "..map.loaded.name.." was not nil")
+		entities.data = game.state[map.loaded.name].entities
+		player = game.state[map.loaded.name].player
+	end
+	print("")
 end
 
 function game.host()

@@ -16,12 +16,14 @@ function entities_player.new(x, y, z)
 	local friction = 0.99
 	local direction = 0
 
+	local width, height = 64, 64
+
 	-- SPRITES
 	--buffer:addSheet("tilesets/LPC/lori_angela_nagel_-_jastivs_artwork/png/female_dwing_walkcycle", 64, 64)
-	buffer:addSheet("BODY_skeleton", 64, 64)
-	buffer:addSheet("HEAD_chain_armor_hood", 64, 64)
-	buffer:addSheet("HEAD_chain_armor_helmet", 64, 64)
-	buffer:addSheet("FEET_shoes_brown", 64, 64)
+	buffer:addSheet("BODY_skeleton", width, height)
+	buffer:addSheet("HEAD_chain_armor_hood", width, height)
+	buffer:addSheet("HEAD_chain_armor_helmet", width, height)
+	buffer:addSheet("FEET_shoes_brown", width, height)
 
 	local spriteset = buffer.spriteset(x-16, y-16, z, 16, 32)
 
@@ -30,15 +32,17 @@ function entities_player.new(x, y, z)
 	table.insert(spriteset.data, {sheet = "HEAD_chain_armor_hood", quad = 14} )
 	--table.insert(spriteset.data, {sheet = "HEAD_chain_armor_helmet", quad = 14} )
 	table.insert(spriteset.data, {sheet = "FEET_shoes_brown", quad = 14} )
+	local object
+	function self.init()
 
-
-	-- Physics
-	--local hitbox = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newRectangleShape(0, -8, 28, 48), self, true)
-	local object = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14), self)
-	object.fixture:setUserData(self)
-	object.body:setLinearDamping( 8 )
-	object.body:setFixedRotation( true )
-	object.fixture:setRestitution( 0.4 )
+		-- Physics
+		--local hitbox = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newRectangleShape(0, -8, 28, 48), self, true)
+		object = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14), self)
+		object.fixture:setUserData(self)
+		object.body:setLinearDamping( 8 )
+		object.body:setFixedRotation( true )
+		object.fixture:setRestitution( 0.4 )
+	end
 
 
 	function self.update(dt)
@@ -73,8 +77,11 @@ function entities_player.new(x, y, z)
 	function self.updatePosition(xn, yn)
 		--hitbox.body:setX(object.body:getX())
 		--hitbox.body:setY(object.body:getY())
+		
 		x = math.floor( object.body:getX() + 0.5 ) -16
 		y = math.floor( object.body:getY() + 0.5 ) -16
+		--x = object.body:getX() - 16
+		--y = object.body:getY() - 16
 
 		-- Update sprite
 		spriteset.x = x
@@ -161,8 +168,9 @@ function entities_player.new(x, y, z)
 	end
 
 	-- Basic functions
-	function self.setPosition(xn, yn)
-		x, y = xn, yn
+	function self.setPosition(x, y)
+		object.body:setPosition(x, y)
+		object.body:setLinearVelocity(0, 0)
 	end
 	
 	function self.getPosition()

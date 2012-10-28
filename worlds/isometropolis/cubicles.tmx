@@ -14,7 +14,7 @@
    <property name="z" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0bEJACAQA8BfRxS0cf/VtLSzffGKg6QLpEREAQAASG4m2PCzcen442f+yKVt9cg9wSYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgPQsfU0Iv
+   eJzt0zEKgDAQRcFcR1TUwvtfTUuxW0T4LFMMpEix5GXXMcZRMPGrPWAG9EilRxY9suiRRY8semT50uMMmL+bSo/3XbulR3d6ZKm86XKbH+ctYP5u/PEsemTRAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+rgAOpBC9A==
   </data>
  </layer>
  <layer name="Tile Layer 1" width="100" height="100">
@@ -22,7 +22,12 @@
    <property name="z" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt09EKgjAYBtBFFAVBUBdBFBUFvf8bNmLeyC6cWY48Bz6mg8HPPt2GEBYFaeT2+Nwys/f4+RQ02n3cRpmCRu7/YDz6qIs+6qKPuuijLiV97FvvuyEH4a2kj0ta7z3O0k3JnR5irjHHmFPM5hsDTVxJH+e0PnucpZuSO13HzNLzPGY1/DiT5xuviz7qog8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgfLwAtAjo=
+   eJzt0tEKgjAYBWAjkoIgqIsgipKC3v8N+wm9GV04Mxz5fXDYJgx+dtxVVbXKSOfTN75XR5okj0knmrc6OTeTTEEn7YNp6aMs+iiLPsqij7Lk9HFIzvsxB+Etp49ru94H3KWfnDc9Rm6RU+Qc2f5ioJnL6ePSrs8Bd+kn5003kUW7X0bW448ze/7xsuijLPoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID/8QLCZgK+
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
 </map>

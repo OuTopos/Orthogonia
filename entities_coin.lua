@@ -1,22 +1,29 @@
-entities_coin= {}
+entities_coin = {}
 
 function entities_coin.new(x, y, z)
 	local self = {}
 	local remove = false
-	
 
-	buffer:addSheet("tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", 32, 32)
-	local spriteset = buffer.spriteset(x-16, y-16, z, 0, 0)
-	table.insert(spriteset.data, {sheet = "tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", quad = 1} )
+	local spriteset = nil
+	local collision = nil
 
-	-- Physics/Collision
-	local collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(8), self)
-	collision.body:setLinearDamping( 0.1 )
-	collision.fixture:setRestitution( 0.9 )
+	function self.init()
+		-- Spriteset
+		buffer:addSheet("tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", 32, 32)
+		spriteset = buffer.spriteset(x-16, y-16, z, 0, 0)
+		table.insert(spriteset.data, {sheet = "tilesets/LPC/clint_bellanger_-_animated_coins/coin_gold", quad = 1} )
+
+		-- Physics/Collision
+		collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(8), self)
+		collision.body:setLinearDamping( 0.1 )
+		collision.fixture:setRestitution( 0.9 )
+	end
 
 	function self.update(dt)
-		x = math.floor( collision.body:getX() + 0.5 ) -16
-		y = math.floor( collision.body:getY() + 0.5 ) -16
+		--x = math.floor( collision.body:getX() + 0.5 ) -16
+		--y = math.floor( collision.body:getY() + 0.5 ) -16
+		x = collision.body:getX() - 16
+		y = collision.body:getY() - 16
 
 		spriteset.x = x
 		spriteset.y = y

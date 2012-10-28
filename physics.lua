@@ -1,12 +1,25 @@
 physics = {}
+physics.enabled = true
 physics.objects = {}
+physics.worlds = {}
 
 
-function physics.setWorld(xg, yg, meter, sleep)
-	physics.destroy()
+function physics.newWorld(world, xg, yg, meter, sleep)
+end
+
+function physics.setWorld(world, xg, yg, meter, sleep)
 	love.physics.setMeter(meter or 32)
-	physics.world = love.physics.newWorld(xg, yg, sleep or false)
-	physics.world:setCallbacks(physics.beginContact, physics.endContact)
+
+	if not physics.worlds[world] then
+		physics.worlds[world] = love.physics.newWorld(xg, yg, sleep or false)
+		physics.worlds[world]:setCallbacks(physics.beginContact, physics.endContact)
+	end
+	physics.world = physics.worlds[world]
+
+	--physics.destroy()
+	--love.physics.setMeter(meter or 32)
+	--physics.world = love.physics.newWorld(xg, yg, sleep or false)
+	--physics.world:setCallbacks(physics.beginContact, physics.endContact)
 end
 
 function physics.newObject(body, shape, userdata, sensor)
@@ -21,6 +34,7 @@ function physics.newObject(body, shape, userdata, sensor)
 end
 
 function physics.destroy()
+	print("DESTROY WORLD NOOOO!")
 	if physics.world then
 		physics.world:destroy()
 		physics.world = nil
@@ -30,8 +44,10 @@ end
 
 
 function physics.update(dt)
-	if physics.world then
-		physics.world:update(dt)
+	if physics.enabled then
+		if physics.world then
+			physics.world:update(dt)
+		end
 	end
 end
 

@@ -7,6 +7,7 @@ require "map"
 require "env"
 require "gui"
 require "hud"
+require "game"
 
 --require "client"
 
@@ -28,7 +29,6 @@ function love.load()
 
 	camera.scale(screen.scale)
 	gui.load()
-	map.load("house1", "bedside")
 end
 
 function love.keypressed(key)
@@ -49,6 +49,13 @@ function love.keypressed(key)
 			buffer.enabled = true
 		end
 	end
+	if key == "p" then
+		if physics.enabled then
+			physics.enabled = false
+		else
+			physics.enabled = true
+		end
+	end
 
 	if key == "m" then
 		map.unload()
@@ -60,7 +67,10 @@ function love.keypressed(key)
 		map.load("house1", "bedside")
 	end
 	if key == "s" then
-		map.load("platform", "start")
+		game.start()
+	end
+	if key == "d" then
+		map.load("cubicles", "", "isometropolis")
 	end
 	if key == "e" then
 		--entities.new("coin", math.random(127.91, 128.19), math.random(127.91, 128.19), 32)
@@ -73,9 +83,9 @@ function love.keypressed(key)
 		entities.new("coin", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
 		entities.new("coin", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
 		entities.new("coin", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
-		entities.new("eyeball", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
-		entities.new("eyeball", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
-		entities.new("eyeball_friend", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		--entities.new("eyeball", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		--entities.new("ghost", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
+		--entities.new("eyeball_friend", player.getX() + math.random(-0.20, 0.20), player.getY() + math.random(-0.20, 0.20), 32)
 	end
 	if key == "n" then
 		poop = #entities.data

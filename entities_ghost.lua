@@ -1,17 +1,17 @@
-entities_eyeball= {}
+entities_ghost = {}
 
-function entities_eyeball.new(x, y, z)
+function entities_ghost.new(x, y, z)
 	local self = {}
 	local remove = false
 
 	
-	buffer:addSheet("entities/eyeball", 32, 38)
-	local spriteset = buffer.spriteset(x-16, y-16, z, 0, 8)
-	table.insert(spriteset.data, {sheet = "entities/eyeball", quad = 4} )
+	buffer:addSheet("tilesets/LPC/base_assets/ghost", 40, 46)
+	local spriteset = buffer.spriteset(x-16, y-16, z, 4, 14)
+	table.insert(spriteset.data, {sheet = "tilesets/LPC/base_assets/ghost", quad = 4} )
 
 	-- Physics/Collision
-	local collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(12), self)
-	collision.body:setLinearDamping( 1 )
+	local collision = physics.newObject(love.physics.newBody(physics.world, x, y, "dynamic"), love.physics.newCircleShape(14), self)
+	collision.body:setLinearDamping( 8 )
 	collision.fixture:setRestitution( 0.9 )
 
 	local speed = 100

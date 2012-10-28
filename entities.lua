@@ -3,33 +3,54 @@ entities.data = {}
 entities.remove = {}
 entities.refresh = false
 
+
 -- All the types of entities
 require	"entities_player"
 require	"entities_player_platform"
 require	"entities_eyeball"
 require	"entities_eyeball_friend"
+require	"entities_ghost"
 require	"entities_snake"
 require	"entities_coin"
 
 function entities.new(type, x, y, z)
 	local entity = _G["entities_"..type].new(x, y, z)
 	table.insert(entities.data, entity)
+	entity.init()
 	buffer:reset()
 	return entity
 end
 
-function entities.reset()
-	for i = 1, #entities.data do
-		if entities.data[i].destroy then
-			entities.data[i].destroy()
-		end
+function entities.load(data)
+	entities.data = data
+	for i,entity in ipairs(entities.data) do
+		--entity.init()
 	end
-	entities.data = {}
+	buffer:reset()
+end
+
+function entities.save()
+	local data = ""
+	for i,entity in ipairs(entities.data) do
+		entity.init()
+	end
+	buffer:reset()
+	return data
 end
 
 function entities.destroy()
 	entities.data = {}
 end
+
+--function entities.reset()
+--	for i = 1, #entities.data do
+--		if entities.data[i].destroy then
+--			entities.data[i].destroy()
+--		end
+--	end
+--	entities.data = {}
+--end
+
 
 function entities.view(i)
 	entities.viewing = i

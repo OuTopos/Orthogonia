@@ -181,13 +181,14 @@
   <object x="384" y="896" width="64" height="32"/>
   <object x="320" y="544" width="64" height="128"/>
   <object x="1248" y="0" width="32" height="1184"/>
-  <object x="0" y="1184" width="32" height="128"/>
-  <object x="32" y="1216" width="32" height="64"/>
+  <object x="0" y="1184" width="32" height="96"/>
+  <object x="32" y="1248" width="32" height="32"/>
   <object x="64" y="1184" width="160" height="96"/>
  </objectgroup>
  <objectgroup color="#55ff00" name="spawns" width="40" height="40">
   <object name="entrance" x="240" y="1248" width="32" height="32"/>
-  <object name="door1" x="32" y="1152" width="32" height="32"/>
+  <object name="door1" x="32" y="1184" width="32" height="32"/>
+  <object x="128" y="736" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#55aaff" name="portals" width="40" height="40">
   <object x="224" y="1280">
@@ -198,13 +199,14 @@
    </properties>
    <polyline points="0,0 64,0"/>
   </object>
-  <object x="32" y="1184" width="32" height="32">
+  <object x="32" y="1216" width="32" height="32">
    <properties>
     <property name="map" value="moenomappu"/>
     <property name="spawn" value="door"/>
     <property name="world" value="orthogonia"/>
    </properties>
   </object>
+  <object x="128" y="704" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="entities" width="40" height="40"/>
 </map>
